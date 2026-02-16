@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Erfbelasting - MelvinVermast</title>
+</head>
+
+<body>
+    <p id="school-warning">Dit is een schoolproject!</p>
+
+    <h1>Erfbelasting 2026</h1>
+    <h2>Gegevens van de overledene</h2>
+    <form action="POST">
+        <!-- Pagina 1 - a-->
+        <fieldset>
+            <legend>Gegevens van de overledene</legend>
+            <!-- De naam van de overledene bestaat uit drie delen: voorletter(s), tussenvoegsel(s) en achternaam. -->
+            <fieldset>
+                <legend>Naam</legend>
+                <label>Initialen
+                    <input required type="text" name="initials">
+                </label>
+                <label>Tussenvoegsel
+                    <input type="text" name="infix">
+                </label>
+                <label>Achternaam
+                    <input required type="text" name="lastname">
+                </label>
+            </fieldset>
+
+            <!-- Het BSN van de overledene bestaat uit 9 cijfers. -->
+            <fieldset>
+                <legend>BSN</legend>
+                <!--
+                Geleerd over wat patterns zijn
+                Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attr-pattern
+                AI het pattern laten genereren met prompt: Give me an html input pattern for a type=text so that only 9 numbers can get added in that text field
+                -->
+                <input required type="text" name="bsn" pattern="^\d{9}$" minlength="9" maxlength="9">
+            </fieldset>
+
+            <!-- De overlijdensdatum van de overledene mag niet in de toekomst liggen. -->
+            <fieldset>
+                <legend>Overlijdensdatum</legend>
+                <!--Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date-->
+                <input required type="date" name="date-of-passing" id="date-of-passing">
+            </fieldset>
+        </fieldset>
+
+        <!-- Pagina 1 - b-->
+        <fieldset>
+            <legend>Gegevens van de erfgenaam</legend>
+            <!--Was de erfgename getrouwd aan de overledene-->
+            <fieldset>
+                <legend>Was de overledene getrouwd of had de overledene een
+                    geregistreerde partner op het moment van overlijden?</legend>
+                <!--Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/radio-->
+                <label>Ja
+                    <input required type="radio" name="married">
+                </label>
+                <label>Nee
+                    <input required type="radio" name="married">
+                </label>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Hadden de overledene en diens echtgenoot of
+                    geregistreerde partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële
+                    akte?</legend>
+                <label>Ja
+                    <input type="radio" name="marriage-recorded">
+                </label>
+                <label>Nee
+                    <input type="radio" name="marriage-recorded">
+                </label>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Hadden de overledene en diens partner een finaal
+                    verrekenbeding?</legend>
+                <label>Ja
+                    <input type="radio" name="final-settlement">
+
+                </label>
+                <label>Nee
+                    <input type="radio" name="final-settlement">
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Datum huwelijkse of partnerschapsvoorwaarden</legend>
+                <input type="date" name="marriage-date" id="marriage-date">
+            </fieldset>
+        </fieldset>
+
+        <!-- Pagina 1 - c-->
+        <fieldset>
+            <legend>Kinderen van overledene</legend>
+            <fieldset>
+                <legend>Had de overledene kinderen?</legend>
+                <label>Ja
+                    <input type="radio" name="had-children">
+
+                </label>
+                <label>Nee
+                    <input type="radio" name="had-children">
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Is 1 van deze kinderen eerder overleden dan de
+                    overledene voor wie u nu aangifte doet?</legend>
+                <label>Ja
+                    <input type="radio" name="child-deceased">
+                </label>
+                <label>Nee
+                    <input type="radio" name="child-deceased">
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Had dit overleden kind zelf kinderen?</legend>
+                <label>Ja
+                    <input type="radio" name="deceased-child-had-children">
+                </label>
+                <label>Nee
+                    <input type="radio" name="deceased-child-had-children">
+                </label>
+            </fieldset>
+        </fieldset>
+
+        <!-- Pagina 1 - d-->
+        <fieldset>
+            <legend>Laatste testament</legend>
+            <fieldset>
+                <legend>Had de overledene een testament?</legend>
+                <label>Ja
+                    <input required type="radio" name="had-will">
+                </label>
+                <label>Nee
+                    <input required type="radio" name="had-will">
+                </label>
+            </fieldset>
+
+            <!-- Als de overledene een testament had, is het volgende veld verplicht. -->
+            <fieldset>
+                <legend>Testament gegevens</legend>
+                <fieldset>
+                    <legend>Protocolnummer notaris</legend>
+                    <input type="text" name="protocol-number" pattern="^\d{9}$" minlength="6" maxlength="6">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Naam</legend>
+                    <label>Initialen
+                        <input type="text" name="will-initials">
+                    </label>
+
+                    <label>Tussenvoegsel
+                        <input type="text" name="will-infix">
+                    </label>
+
+                    <label>Achternaam
+                        <input type="text" name="will-lastname">
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Vestigingsplaats</legend>
+                    <input type="text">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Datum van het testament of
+                        van de laatste wijziging</legend>
+                    <input type="date" name="date-of-will" id="date-of-will">
+                </fieldset>
+            </fieldset>
+        </fieldset>
+
+        <!-- Pagina 3 - a-->
+        <fieldset>
+            <legend>Voor wie doet u aangifte?</legend>
+            
+        </fieldset>
+
+        <button type="submit">SUBMIT</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
