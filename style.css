@@ -1,6 +1,6 @@
 * {
-    /*margin: 0;
-    padding: 0;*/
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -8,20 +8,23 @@
     --primary-color: #ffc917;
     --secondary-color: #003082;
     --tertiary-color: #e6e6e9;
-    --background-color: #ffffff;
+    --white: #ffffff;
     --text-color: #070721;
     --link-color: #0063d3;
     --warning-color: #e2103d;
+
+    --font-family: 'Segoe UI', Verdana, sans-serif;
 }
 
 body {
     width: 100vw;
     height: 100vh;
-    
+    font-family: var(--font-family);
+    background: var(--primary-color)
 }
 
 #school-warning {
-    background: red;
+    background: var(--warning-color);
     color: white;
     text-transform: uppercase;
     width: 100%;
@@ -30,7 +33,60 @@ body {
     font-size: 1.5em;
 }
 
+form {
+    width: 95%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 2em;
+}
+
+#form-background {
+    width: 100%;
+    background: var(--tertiary-color);
+    padding: 2em 0em 2em 0em;
+
+}
+
 fieldset {
     display: flex;
     flex-direction: column;
+    margin: 1em 0;
+    border: none;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+    min-height: 60vh;
+}
+
+#step-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: flex-end;
+}
+
+/* Styling van de button: https://www.ns.nl/?utm_source=google&utm_medium=Paid_Search&utm_campaign=NSR-CORP-BR-corporate_C13090&utm_content=&utm_term=ns&utm_id=google_ads_16495705419&gad_source=1&gad_campaignid=16495705419&gbraid=0AAAAADPhMsdFM9X0aDbt-uVlAm0xCiJis&gclid=CjwKCAiAwNDMBhBfEiwAd7ti1JzSFy1babL4UMYozV751sv8AwSPa_cla5f79mxyneg3VEzVRzMM6RoC-mwQAvD_BwE */
+#next-step-button,
+#previous-step-button {
+    background: var(--link-color);
+    border: none;
+    border-radius: 4px;
+    color: var(--white);
+    font-size: 1rem;
+    padding: 0.625rem 1.125rem;
+    text-align: center;
+    white-space: no-wrap;
+    box-shadow: inset 0 -.125rem 0 var(--secondary-color);
+    transition: box-shadow .15s ease-in-out;
+}
+
+#next-step-button:hover,
+#previous-step-button:hover {
+    box-shadow: inset 0 -3.125rem 0 var(--secondary-color);
 }

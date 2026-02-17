@@ -44,3 +44,10 @@ Een andere fout in Tahoe is hoe icoontjes die al bestaan voor UI interacties, di
 Het handige in pop-up lijstjes met teksten is dat je vaak gewoon de eerste letter van de woorden kan scannen om de juiste actie te vinden. Maar in sommige gevallen in Tahoe krijgen sommige wel een icoon en andere niet. Dit zorgt ervoor dat niet elke tekst links is uitgelijnd en dat het dus moeilijker scannen wordt.
 <br><br>
 Interfaces moeten werken voor mensen, niet voor computers. Mensen krijgen niet elk jaar een nieuwe update om nieuwe informatie op te slaan. We zijn aan dingen gewend en zouden dat graag terug willen zien in designs.
+
+## Dag 2: Dinsdag 17 - 2 -2026
+Weekly geek bespreking - 45 min
+Deel 3 van erfbelasting toevoegen - 1,5 uur
+Checken van vorige layout - 1 uur
+Styling van buttons - 30 min
+Javascript code voor verschillende steps - 30 min
