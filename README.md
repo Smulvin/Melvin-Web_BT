@@ -1,6 +1,8 @@
 # Melvin-Web_BT
 Website voor het vak Browser Technologies
 
+DIT IS EEN OPDRACTT VOOR SCHOOL
+
 ## Week 1
 
 ### Dag 1: Maandag 16 - 2 - 2026
@@ -59,3 +61,9 @@ Was cool dat ik buttons had om het op verschillende pagina's te doen en dat die 
 
 ## Week 1 verslag
 Deze week heb ik een goed begin gemaakt aan mijn formulier over de erfbelasting in de stijl van de NS. Om makkelijk te beginnen ben ik eerst gaan kijken naar de verschillende kleuren van de NS en die even in root op te slaan. Dit was uiteraard snel gedaan dus ging ik daarna meteen aan de form werken. Ik had als idee om het een beetje in de stijl van de Nationale Studenten Enquete te doen. Dat je op 1 pagina maar een gelimiteerd hoeveelheid vragen tegelijk ziet en dat je op die manier door het complete formulier gaat. We kregen als opdracht dat we 2 patterns moesten doen. De eerste was al gegeven op pagina 1 van de erfbelasting. Daarin moest je kijken dat als er iets specifieks is ingevuld dat je dat andere vragen mag overslaan. Dit leek me inderdaad interessant om naar te kijken omdat je dan moet kijken of een checkbox/radio button gecheckt is. De eerste dag was ik vooral bezig met dat gedeelte van de form netjes in HTML te maken door middel van fieldsets en legends. Dit waren HTML elementen die ik nog niet eerder had gebruikt voor forms en goed werken voor screenreaders. Waar 1 van mijn leerdoelen over ging. Dus dat was meteen een plus punt. De tweede dag ben ik daar dan ook verder mee gegaan met een ander onderdeel uit het formulier. Ik had gekozen om onderdeel 3 te doen. Hier kwam namelijk een pattern in voor dat je moest aangeven over hoeveel mensen het ging en dat je per persoon dingen moest invullen. Dit leek me een leuke pattern om mee te werken omdat je dan ook moet kijken naar een specifieke waarde en aan de hand daarvan het formulier langer moet maken. De HTML hiervoor had ik nu iets sneller voor elkaar, dus kon ik ook alvast een beetje kijken naar styling en JavaScript. De javascript om ervoor te zorgen dat je door middel van knoppen door het formulier heen kwam had ik sneller dan verwacht werkend en hoefde ik alleen nog maar een beetje te tweaken dat bijvoorbeeld de "Previous" button niet te zien is op het eerste gedeelte en dat de "Next" button een submit knop wordt op het laatste gedeelte van het formulier. De rest van de functionaliteit van het formulier ga ik later aan werken. Ik wilde eerst een beetje gaan stylen. Op de website van de NS had ik een button gevonden met een hover state. Deze kon ik vrij makkelijk uit de inspector halen en direct op mijn eigen buttons zetten. Ik had niet alle properties nodig dus het was een beetje puzzelen. Voor de rest heb ik tot nu toe alleen nog wat achtergronden een kleur gegeven zodat het meer de stijl van de NS werd. De rest van de styling, functionaliteiten en valideren doe ik na de vakantie.
+
+### Voortgangsgesprek week 1
+Checken wat er gebeurt als JS uitstaat
+display none is gevaarlijk
+validatie van per stap checken
+screenreader checken waar de focus ligt als je bijvoorbeeld op de button zit
