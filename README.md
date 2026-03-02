@@ -26,7 +26,7 @@ Ik heb hier alleen nog een minlength aan toegevoegd en nog wat extra uitleg gevr
 #### Checkout met Mats
 Ik kan alvast een beetje padding toevoegen voor overzicht in de huidige versie van mijn website, maar niet voor mijn uiteindelijke versie. Plus ik had nog even geleerd over het mark element in html code, dat geeft overzicht in mijn html door gewoon MARK: te typen. Dat kan helpen in het overzicht in mijn code en snel naar het juiste punt springen.
 
-### Weekly Geek: It’s hard to justify Tahoe icons
+### Weekly Geek 1: It’s hard to justify Tahoe icons
 Bron: https://tonsky.me/blog/tahoe-icons/<br>
 
 "The number of elements and their behaviours should be limited". Je wilt dus kort en duidelijk uitleg geven over bepaalde interacties. Zo hadn macOS in 2025 dus heel veel extra icoontjes toegevoegd aan teksten die al duidelijk genoeg waren. Icoontjes zouden namelijk moeten helpen om dingen snel te vinden, maar als alles een icoontje heeft, helpt het niks.<br>
@@ -64,3 +64,55 @@ Deze week heb ik een goed begin gemaakt aan mijn formulier over de erfbelasting 
 
 ### Voortgangsgesprek week 1
 Ik had mijn voortgangsgesprek met Victor. Tijdens het gesprek zag ik een paar mooie voorbeelden van medestudenten die al meer met CSS en styling hadden gedaan. Dus daar kon ik goede inspiratie uit nemen. Voor mijn eigen werk had Victor vooral de tip om even te kijken wat er gebeurt als mijn JavaScript uit staat. In mijn geval zie je namelijk nu helemaal niks meer van het formulier, omdat ik standaard alles op display: none heb staan. Hier moet ik dus even een iets andere aanpak voor gebruiken. Voor de rest was het inderdaad handig als ik per stap dingen ga valideren van of alles ingevuld in plaats van het hele document in 1 keer. En dat ik met een screenreader kan checken waar de focus ligt als je bijvoorbeeld op een button zit.
+
+## Week 2
+
+### Dag 3: Maandag 2 - 3 - 2026
+Vandaag was ik begonnen met nog even mijn readme bestanden aanvullen van BT en CSS van de voortgangsgesprekken van voor de voorjaarsvakantie. Daarna begonnen we de les met een workshop over validatie. Hier had ik vooral geleerd over het title attribute in HTML waarmee je soms het error/warning tekstje kan veranderen op een input element. Het meeste dat ik vandaag had geleerd kwam van de CSS selectors. Zoals hoe je :hover kan gebruiken met een input die genest is in een label. Maar vooral over andere selectoren zoals het attribute selector maar ook :checked, :disabled, :invalid / :valid en :user-invalid / :user-valid. Dit was de basis uitleg over validatie. Waarin je vooral de styling van dingen kan aanpassen en voor de rest kan werken met required. Voor mijn huidige setup voor mijn project heb ik meer de javascript uitleg nodig. Dus daar zal ik morgen voor kijken met de workshop van Victor. Deze workshop duurde ongeveer 1 uur. Daarna ben ik gaan kijken naar progressive enchancement. Op het moment was het namelijk zo dat als mijn javascript bestand niet goed in laad, dat je dan helemaal niks meer ziet. Wat uiteraard niet goed is. Dus moest ik mijn code een beetje veranderen zodat niet elke stap standaard een display:none heeft, maar dat ze die krijgen via de javascript. Dan is namelijk standaard nog steeds alles te zien. Dit duurde ongeveer 1 uur.<br>
+Vandaag ben ik ook gaan kijken naar de functionaliteit van mijn patterns. Als eerste die van pattern 1. Deze was een stukje makkelijker. Aangezien ik nu wist hoe ik met input selectoren kon werken, was het me gelukt om te checken of een bepaalde input een bepaalde waarde had. Aan de hand van die waarde kon ik een div laten animeren. Voor nu had ik het zo gemaakt dat de max-height naar 0 gaat en dat de opacity naar 0 gaat als hij "inklapt", en uiteraard ook weer gereset wordt. Dit duurde niet heel lang. Ongeveer 1,5 uur. Ik had voor deze manier gekozen omdat het dan delen weghaalt en compleet niet meer laat zien in het document, waardoor er een last van de user af gaat. Ik had het ook andersom kunnen doen met dat er meer informatie bij komt, maar dat leek me juist minder motiverend om in te vullen. Ik had ook inplaats van het helemaal weghalen het ook alleen een lagere opacity kunnen geven of het disablen. Maar dat zou niet goed werken voor slechtziende omdat het contrast dan minder wordt.<br>
+Pattern 2 had wat meer gedoe. Dit ging over het gedeelte dat je kan invullen hoeveel erfgenamen er zijn en dat aan de hand daarvan het formulier verandered. In eerrste instantie had ik dit aan ChatGPT gevraagd. Ik had gevraagd of hij een stukje code kon dupliceren en in kon voegen. Hier ben ik meerdere prompts mee bezig geweest maar niks wilde lukken, vanaf een bepaald moment ging het meer kapot dan dat het beter werd. Dylan had een soortgelijk iets. Hij had een template element om zijn stuk code gedaan dat gekopieerd moest worden. Toen ik het opnieuw in een nieuwe chat van ChatGPT vroeg. Werkte het vrijwel meteen. Ik moest alleen nog even toevoegen dat de legend correct werd aangepast en dat ze op de juiste plek in mijn steps kwamen. Dit duurde 2,5 uur om dit te laten werken. Als laatste vandaag ben ik een uur bezig geweest met onderzoek naar Radio buttons, checkboxes en labels voor de Weekly Geek.
+
+## Daily Checkout met
+
+### Weekly Geek 2: UX of HTML
+Bronnen:
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/checkbox_role <br>
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/radio_role <br>
+https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/checkbox <br>
+https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/radio <br>
+https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label <br>
+
+#### Checkbox role
+Interactief controls, hebben een attribute dat ervoor zorgt dat de waarde bekend is voor assistent technology. Een checkbox kan alleen aan of uit staan, maar voor assistent software kan het ook nog gemixt zijn. Moet gefocust kunnen worden en werken met keyboard. Tabindex gebruiken om focusable te maken. Activeren van de checkbox met spatiebalk. Aria-checked dynamisch aanpassen. Een checkbox moet gecombineerd kunnen worden met een stuk tekst. Voor javascript heeft een een onclick nodig en een onKeyDown. onclick voor de muis, onKeyDown voor spatiebalk zodra hij gefocust is. 
+
+#### Checkbox Input
+Value = moet een waarde hebben dat door wordt gegeven aan de server, is speciaal als het gaat om checkboxes. Maar standaard geeft het een string "on"<br>
+Checked = of de checkbox wel of niet al gecheckt begint.<br>
+Switch = maakt van de checkbox een aan/uit knop, veranderd de look. Werkt nog steeds hetzelfde.<br>
+Als de checkbox genest is in een label, wordt het label ook klikbaar voor de checkbox.
+Checkboxes kunnen children zijn van een checkbox, als elke onderliggende checkbox gecheckt is, wordt de parent ook gecheckt.
+
+#### Radio Role
+Radio buttons zijn een groep van buttons. Maar er kan er altijd maar 1 actief zijn. Heeft net zoals een checkbox 2 states, checked en not checked. Mixed is niet mogelijk voor aria-checked op een radio button. Radio buttons staan in een groep met role=radiogroup. Elke radio button heeft een label element die gekoppeld is aan het input veld (aria-labelledby / aria-label). Moet focussable zijn met screenreaders en moet kunnen worden bestuurd en met keyboard bestuurd kunnen worden, spatiebalk om aan te klikken. Children van een radio button kunnen h elementen zijn. 
+Tab+Shift = geen focus meer op radio group <br>
+Space = Checks focust radio button
+Right and Down Arrow = Verplaats focus naar volgende radio button in groep. Laatst gaat naar eerste.
+LEfet and Up Arrow = Verplaats focus naar vorige radio button in groep. Eerst gaat naar laatste.<br><br>
+
+Onclick en onKeyPress nodig in Javascript, onclick voor muis, onKeyPress voor keyboard.
+
+#### Radio Input
+Wordt meestal gebruikt in radio groups, er kan er altijd maar 1 binnen een groep geklikt zijn. Zijn meestal kleine cirkeltjes. Inspiratie van hoe je op een oude radio altijd maar 1 knop tegelijk ingedrukt kon hebben.<br>
+Value = string dat een waarde meegeeft aan de server, geeft aan welke button geklikt is.<br>
+name = wordt gebruikt voor een radio group. Geeft aan welke radio buttons bij elkaar horen omdat ze in dezelfde radiogroup staan.<br>
+Checked = geeft aan welke radio button aan moet staan als default
+required = moet ingevuld worden voordat form wordt verstuurd.
+Kunnen niet genest worden in een label.
+
+#### Label Element
+Gebruikt global attributes
+for = werkt als id voor het label. Zoekt naar element met zelfde id. Er kunnen meerdere labels zijn met dezelfde for waarde. Kan gekoppeld worden aan dingen zoals input en textarea. Zorgt ervoor dat als je op label klikt dat je dan ook meteen focus hebt op het input of textarea veld.<br>
+Je kan een label koppelen aan een input door gebruik te maken van for en een id, maar je kan de input ook nesten binnen het label element. Niet elke assistent technology ondersteunt niet altijd de verwijzing manier. En het soort koppelen kan invloed hebben op de styling. Als je verwijzing gebruikt moet het input een uniek id hebben. Wat heel erg specifiek is. <br>
+Voor een link is het beter om hem niet te nesten in het label, maar een apart element ervoor te hebben.<br>
+Het is meestal niet handig om een heading in een label te zetten om het sommige assistent technology verpest. Voor een heading in een form kan je beter een legend binnen een fieldset dan gebruiken.<br>
+Buttons hebben geen label element nodig.
