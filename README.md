@@ -97,8 +97,7 @@ Radio buttons zijn een groep van buttons. Maar er kan er altijd maar 1 actief zi
 Tab+Shift = geen focus meer op radio group <br>
 Space = Checks focust radio button
 Right and Down Arrow = Verplaats focus naar volgende radio button in groep. Laatst gaat naar eerste.
-LEfet and Up Arrow = Verplaats focus naar vorige radio button in groep. Eerst gaat naar laatste.<br><br>
-
+LEfet and Up Arrow = Verplaats focus naar vorige radio button in groep. Eerst gaat naar laatste.<br>
 Onclick en onKeyPress nodig in Javascript, onclick voor muis, onKeyPress voor keyboard.
 
 #### Radio Input
