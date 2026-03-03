@@ -1,9 +1,16 @@
-let steps = Array.from(document.querySelectorAll('.step'));
+let steps = Array.from(document.querySelectorAll('.step'))
+    //Fallback steps weghalen wanneer javascript correct laad
+    .filter(step => !step.classList.contains('fall-back-step'));
 const nextBtn = document.getElementById('next-step-button');
 const prevBtn = document.getElementById('previous-step-button');
 const numberInput = document.getElementById('number-of-beneficiaries-not-charges');
 const template = document.getElementById('beneficiary-template');
 const beneficiariesContainer = document.getElementById('beneficiaries-container');
+
+// Steps volledig inactief maken
+document.querySelectorAll('.fall-back-step').forEach(step => {
+    step.classList.add('inactive');
+});
 
 let currentStep = 0;
 
@@ -85,21 +92,37 @@ function generateBeneficiaries(number) {
 
 // Next button click
 nextBtn?.addEventListener('click', () => {
+    const currentStepEl = steps[currentStep];
 
-    if (steps[currentStep].id === 'step6') {
+    // Only visible & enabled inputs
+    const inputs = Array.from(currentStepEl.querySelectorAll('input, select, textarea'))
+        .filter(input => !input.disabled && input.offsetParent !== null);
+
+    let firstInvalid = null;
+
+    for (const input of inputs) {
+        if (!input.checkValidity()) {
+            firstInvalid = input;
+            break; // stop at the first invalid input
+        }
+    }
+
+    if (firstInvalid) {
+        firstInvalid.reportValidity();
+        return; // Prevent going to next step
+    }
+
+    // Generate beneficiaries dynamically if on step6
+    if (currentStepEl.id === 'step6') {
         const num = parseInt(numberInput.value, 10);
         if (!isNaN(num) && num > 0) {
             generateBeneficiaries(num);
         }
     }
 
+    // Move to next step (skip skipped steps)
     let nextIndex = currentStep + 1;
-
-    // Skip any skipped steps
-    while (
-        nextIndex < steps.length &&
-        steps[nextIndex].classList.contains("step-skipped")
-    ) {
+    while (nextIndex < steps.length && steps[nextIndex].classList.contains("step-skipped")) {
         nextIndex++;
     }
 
@@ -128,11 +151,14 @@ prevBtn?.addEventListener('click', () => {
     }
 });
 
+// Skippen van specifieke steps
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Configuration: which radio skips which steps
+    // Welke radio waarde skipt welke steps
     const skipConfig = {
         "is-executioner": ["step6"],
+        "is-heir-multiple": ["step8"],
+        "is-heir-single": ["step8"]
     };
 
     document.querySelectorAll('input[name="executioner"]').forEach(radio => {
@@ -157,4 +183,51 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+});
+
+
+// Voor screenreaders moest er een display none
+
+
+document.addEventListener("change", function(e) {
+    const radio = e.target;
+
+    if (!radio.matches('input[type="radio"]')) return;
+
+    const step = radio.closest(".step");
+    if (!step) return;
+
+    const groups = {
+        "married": ".married-dependent-fields",
+        "marriage-recorded": ".marriage-recorded-dependent-fields",
+        "had-children": ".children-dependent-fields",
+        "child-deceased": ".deceased-child-dependent-fields",
+        "had-will": ".will-dependent-fields",
+        "are-beneficiaries": ".show-number-of-beneficiaries"
+    };
+
+    const selector = groups[radio.name];
+    if (!selector) return;
+
+    const target = step.querySelector(selector);
+    if (!target) return;
+
+    // Select all form controls inside target
+    const inputs = target.querySelectorAll("input, select, textarea, button");
+
+    if (radio.value === "no") {
+        target.setAttribute("aria-hidden", "true");
+        target.setAttribute("inert", "");
+
+        // Disable all children inputs
+        inputs.forEach(input => input.disabled = true);
+    }
+
+    if (radio.value === "yes") {
+        target.removeAttribute("aria-hidden");
+        target.removeAttribute("inert");
+
+        // Enable all children inputs
+        inputs.forEach(input => input.disabled = false);
+    }
 });

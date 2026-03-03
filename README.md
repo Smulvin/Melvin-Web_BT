@@ -118,3 +118,10 @@ Het is meestal niet handig om een heading in een label te zetten om het sommige 
 Buttons hebben geen label element nodig.
 
 ### Dag 4: Dinsdag 3 - 3 - 2026
+Weekly geek bespreking - 1 uur
+Meer progressive disclosure - 0,5 uur
+Fixen dat jusite number gebruikt werd voor erfgenaam hoeveelheid - 1 uur
+fallback erfgenamen toegevoegd in html - 0,5 uur
+AI om hulp gevraagd met display none en block, later aria-hidden en inert gebruikt - 1 uur
+validatie in HTML - 1 uur
+Dylan raadde aan om disabled te gebruiken voor validatie, ik kwam er zelf mee om het via javascript te doen op plek waar transitions gefixt worden + validatie per pagina 0.5 uur
