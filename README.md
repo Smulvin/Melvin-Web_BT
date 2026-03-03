@@ -83,7 +83,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/check
 https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/radio <br>
 https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label <br>
 
-#### Checkbox role
+#### Checkbox Role
 Interactief controls, hebben een attribute dat ervoor zorgt dat de waarde bekend is voor assistent technology. Een checkbox kan alleen aan of uit staan, maar voor assistent software kan het ook nog gemixt zijn. Moet gefocust kunnen worden en werken met keyboard. Tabindex gebruiken om focusable te maken. Activeren van de checkbox met spatiebalk. Aria-checked dynamisch aanpassen. Een checkbox moet gecombineerd kunnen worden met een stuk tekst. Voor javascript heeft een een onclick nodig en een onKeyDown. onclick voor de muis, onKeyDown voor spatiebalk zodra hij gefocust is. 
 
 #### Checkbox Input
@@ -98,7 +98,7 @@ Radio buttons zijn een groep van buttons. Maar er kan er altijd maar 1 actief zi
 Tab+Shift = geen focus meer op radio group <br>
 Space = Checks focust radio button
 Right and Down Arrow = Verplaats focus naar volgende radio button in groep. Laatst gaat naar eerste.
-LEfet and Up Arrow = Verplaats focus naar vorige radio button in groep. Eerst gaat naar laatste.<br>
+Left and Up Arrow = Verplaats focus naar vorige radio button in groep. Eerst gaat naar laatste.<br>
 Onclick en onKeyPress nodig in Javascript, onclick voor muis, onKeyPress voor keyboard.
 
 #### Radio Input
@@ -116,3 +116,5 @@ Je kan een label koppelen aan een input door gebruik te maken van for en een id,
 Voor een link is het beter om hem niet te nesten in het label, maar een apart element ervoor te hebben.<br>
 Het is meestal niet handig om een heading in een label te zetten om het sommige assistent technology verpest. Voor een heading in een form kan je beter een legend binnen een fieldset dan gebruiken.<br>
 Buttons hebben geen label element nodig.
+
+### Dag 4: Dinsdag 3 - 3 - 2026

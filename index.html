@@ -250,7 +250,7 @@
 
             <!-- Pagina 3 - b -->
             <fieldset id="step6" class="step">
-                <legend>Voor wie doet u geen aangifte</legend>
+                <legend>Voor wie doet u geen aangifte?</legend>
                 <fieldset>
                     <legend>Zijn er verkrijgers voor wie u geen aangifte doet?</legend>
                     <label for="no-beneficiaries-no">
@@ -259,6 +259,11 @@
                     <label for="are-beneficiaries-yes">
                         <input type="radio" name="are-beneficiaries" id="are-beneficiaries-yes" value="yes">Ja
                     </label>
+                    <div class="show-number-of-beneficiaries">
+                        <label for="number-of-beneficiaries-not-charges">
+                            Hoeveelheid verkrijgers<input type="number" id="number-of-beneficiaries-not-charges" name="number-of-beneficiaries-not-charges" min="0">
+                        </label>
+                    </div>
                 </fieldset>
             </fieldset>
             <template id="beneficiary-template">

@@ -115,3 +115,15 @@ fieldset {
     opacity: 0;
     transition: max-height 0.5s ease, opacity 0.5s ease;
 }
+
+.show-number-of-beneficiaries {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;  
+}
+
+.step:has(input[name="are-beneficiaries"][value="yes"]:checked) .show-number-of-beneficiaries {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.5s ease, opacity 0.5s ease;  
+}

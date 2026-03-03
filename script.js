@@ -1,7 +1,7 @@
 let steps = Array.from(document.querySelectorAll('.step'));
 const nextBtn = document.getElementById('next-step-button');
 const prevBtn = document.getElementById('previous-step-button');
-const numberInput = document.getElementById('number-of-beneficiaries');
+const numberInput = document.getElementById('number-of-beneficiaries-not-charges');
 const template = document.getElementById('beneficiary-template');
 const beneficiariesContainer = document.getElementById('beneficiaries-container');
 
@@ -85,24 +85,76 @@ function generateBeneficiaries(number) {
 
 // Next button click
 nextBtn?.addEventListener('click', () => {
-    // If moving from the number-of-beneficiaries step
-    if (steps[currentStep].id === 'step5') {
+
+    if (steps[currentStep].id === 'step6') {
         const num = parseInt(numberInput.value, 10);
         if (!isNaN(num) && num > 0) {
             generateBeneficiaries(num);
         }
     }
 
-    if (currentStep < steps.length - 1) {
-        currentStep++;
+    let nextIndex = currentStep + 1;
+
+    // Skip any skipped steps
+    while (
+        nextIndex < steps.length &&
+        steps[nextIndex].classList.contains("step-skipped")
+    ) {
+        nextIndex++;
+    }
+
+    if (nextIndex < steps.length) {
+        currentStep = nextIndex;
         showStep(currentStep);
     }
 });
 
 // Previous button click
 prevBtn?.addEventListener('click', () => {
-    if (currentStep > 0) {
-        currentStep--;
+
+    let prevIndex = currentStep - 1;
+
+    // Skip backwards over skipped steps
+    while (
+        prevIndex >= 0 &&
+        steps[prevIndex].classList.contains("step-skipped")
+    ) {
+        prevIndex--;
+    }
+
+    if (prevIndex >= 0) {
+        currentStep = prevIndex;
         showStep(currentStep);
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Configuration: which radio skips which steps
+    const skipConfig = {
+        "is-executioner": ["step6"],
+    };
+
+    document.querySelectorAll('input[name="executioner"]').forEach(radio => {
+        radio.addEventListener("change", function () {
+
+            // Remove previous skips
+            document.querySelectorAll(".step-skipped").forEach(step => {
+                step.classList.remove("step-skipped");
+            });
+
+            const stepsToSkip = skipConfig[this.id];
+
+            if (stepsToSkip) {
+                stepsToSkip.forEach(stepId => {
+                    const step = document.getElementById(stepId);
+                    if (step) {
+                        step.classList.add("step-skipped");
+                    }
+                });
+            }
+
+        });
+    });
+
 });
