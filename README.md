@@ -120,5 +120,47 @@ Buttons hebben geen label element nodig.
 ### Dag 4: Dinsdag 3 - 3 - 2026
 We begonnen vandaag met het bespreken van de Weekly Geek. Hierbij gingen we zitten met ons groepje en onze informatie delen een korte presentatie voorbereiden. Wij hadden allemaal alle artikelen gelezen dus we hadden veel nieuws te vertellen aan elkaar. Maar we hebben het wel besproken en gekeken welke informatie we willen vertellen tijdens de presentatie en hadden hier een CodePen bijgezocht. Later hoefde we niet eens te presenteren. Deze Weekly Geek bespreken duurde ongeveer een uur. Daarna ging ik verder werken aan progressive disclosure. Ik had gister namelijk een template gemaakt die gedupliceerd kon worden aan de hand van een number input. Alleen ging dit over het verkeerde onderwerp. Ik moest hier dus even een nieuwe input voor aanmaken die niet in het originele formulier zat en mijn js waardes een beetje aanpassen. Dit bij elkaar duurde ongeveer 1,5 uur. Daarna ben ik bezig geweest met fallback verkrijger formulieren, dat als mijn javascript niet werkt ze nog steeds ingevuld konden worden. Het was een beetje een gedoe om dit te fixen in javascript met dat die stappen correct worden verwijderd, maar is gelukt, duurde ongeveer 0,5 uur. Daarna had ik AI om hulp gevraagd met display none en block voor elementen die weggehaald worden omdat ze niet ingevuld hoeven te worden, dit kreeg ik steeds niet aan de praat. Later leerde ik over aria-hidden en inert. Dat werkt goed en vrijwel meteen. In totaal iets van 1 uur. Daarna heb ik wat validatie toegevoegd aan HTML, in de vorm van required attribute en hier en daar een pattern, ook ongeveer 1 uur. Als laatste kwam Dylan nog met het idee om disabled te gebruiken voor de onderdelen die weg gaan zodat ze niet mee gaan in de validatie, ook dit werkte vrijwel meteen. Was gefixt binnen 0,5 uur.
 
+#### AI Hulp
+Prompt: Alright, so still using the following code. Forget about display none and block and just use aria-hidden en inert.
+```
+document.addEventListener("change", function(e) {
+    const radio = e.target;
+
+    // Only act on radio buttons
+    if (!radio.matches('input[type="radio"]')) return;
+
+    const step = radio.closest(".step");
+    if (!step) return;
+
+    // Map radio names to their dependent fields
+    const groups = {
+        "married": ".married-dependent-fields",
+        "marriage-recorded": ".marriage-recorded-dependent-fields",
+        "had-children": ".children-dependent-fields",
+        "child-deceased": ".deceased-child-dependent-fields",
+        "had-will": ".will-dependent-fields",
+        "are-beneficiaries": ".show-number-of-beneficiaries"
+    };
+
+    const selector = groups[radio.name];
+    if (!selector) return;
+
+    const target = step.querySelector(selector);
+    if (!target) return;
+
+    // If the answer is "no" → collapse visually + hide from screen readers
+    if (radio.value === "no") {
+        target.setAttribute("aria-hidden", "true");
+        target.setAttribute("inert", "");
+    }
+
+    // If the answer is "yes" → make it visible + accessible
+    if (radio.value === "yes") {
+        target.removeAttribute("aria-hidden");
+        target.removeAttribute("inert");
+    }
+});
+```
+
 #### Checkout met Romy
 Mijn gekozen persoon was er niet, dus ging ik met Romy, want die was ook alleen. We hadden niet veel nieuwe dingen specifiek om aan elkaar te vertellen. Ik vond het wel interessant om te zien hoe zij specifiek had gekozen om nieuwe informatie te laten zien als je op "Ja" klikt, in tegenstelling van hoe ik heb dat als je op "Nee" klikt dat er dan informatie weg gaat. Zij vond het zelf misschien ook beter om het op mijn manier te doen na mijn uitleg van hoe het waarschijnlijk fijner is voor de gebruiker om niet meer invulvelden te krijgen. Voor de rest vond ik haar styling heel mooi. Ik had hier zelf nog niet veel aandacht aan besteed maar kom daar nu wel langzaam aan toe. In plaats van geel te gebruiken als primaire kleur, had zij juist de donkerblauw gebruikt. Ik vond dit er persoonlijk een stuk beter uit zien dat wat ik had. Dus misschien dat ik daar wat inspiratie uit neem, net zoals hoe zij hr elementen gebruiken onder kopjes, dat zorgde voor een mooi overzicht.
