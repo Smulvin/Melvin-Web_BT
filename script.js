@@ -107,10 +107,11 @@ nextBtn?.addEventListener('click', () => {
         }
     }
 
+    // Check validity per step
     if (firstInvalid) {
         firstInvalid.reportValidity();
         return; // Prevent going to next step
-    }
+    } 
 
     // Generate beneficiaries dynamically if on step6
     if (currentStepEl.id === 'step6') {
@@ -187,8 +188,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // Voor screenreaders moest er een display none
-
-
 document.addEventListener("change", function(e) {
     const radio = e.target;
 
