@@ -253,4 +253,5 @@ Het is beter om gewoon meteen een goed duidelijk design te kiezen voor je text i
 <br><br>
 Ik ben eens met veel punten uit deze video. Ik ben altijd van mening dat functionaliteit voorop moet staan en niet uiterlijk. Uiterlijk kan helpen om dingen duidelijker te maken, maar de functionaliteit moet er niet onder leiden. Een input heeft niet veel nodig om duidelijker gemaakt te worden behalve een label. Het label moet duidelijk zijn over welk input veld het gaat, en vooral niet afleiden van het doel van een formulier.
 
-#### Checkout met
+#### Checkout met Mats\
+Mats was vandaag bezig geweest met onder andere validatie. Zo had hij verschillende secties voor of je uit Nederland of uit het buitenland komt. Dit vond ik een interessante aanpak. Hij had hier ook al over nagedacht van hoe het zou zijn als de javascript uit staat. Hij had me even laten zien hoe hij het had gedaan dat je limieten kon zetten om een date input. Hier kan ik misschien later nor kijken voor mijn eigen formulier.
