@@ -183,6 +183,61 @@ Vandaag heb ik eerst een beetje validatie nog gedaan waar ik achter kwam tijdens
 
 <img src="Assets/README_imgs/Dag5-Voortgang.png"> 
 
+#### AI hulp
+Prompt: how do I style a radio button so that the label is inside of the button?
+
+```
+.radio-button {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    border: 2px solid #333;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Hide the radio itself */
+.radio-button input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Checked state */
+.radio-button:has(input:checked) {
+    background: #333;
+    color: white;
+}
+```
+
+Eigen code:
+```
+.radio-button {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    border: 2px solid var(--tertiary-color);
+    border-radius: 6px;
+    min-width: 5em;
+    width: 100%;
+    margin: 0.5em 0.5em 0.5em 0;
+
+    input {
+        position: absolute;
+        display: none;
+        width: 100%;
+        
+    }
+
+    &:has(input:checked){
+        border: 2px solid var( --selected-color);
+        color: var(--secondary-color);
+    }
+}
+
+input[type="text"], input[type="number"] {
+    padding: 0.5em;
+}
+```
+
 #### Gastcollege Rijk van Zanten
 Het was interessant om te horen hoe de studiejaren van Rijk zijn geweest en welke keuzes hij had gemaakt om te komen tot waar hij nu is. Het was wel cool om te horen hoe hij als een startersbedrijf begon samen met 1 ander persoon. Maar nu ondertussen meer dan 500 contributers heeft op zijn GitHub repository. Dit wil niet zeggen dat ik ook van mijzelf verwacht.
 

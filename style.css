@@ -117,6 +117,7 @@ label {
         max-width: 20%;
     }
 }
+/* Hulp van AI: prompt: how do I style a radio button so that the label is inside of the button? */
 
 .radio-button {
     display: inline-block;
