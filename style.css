@@ -8,24 +8,26 @@
     --primary-color: #ffc917;
     --secondary-color: #003082;
     --tertiary-color: #e6e6e9;
+    --selected-color: #0063d3;
     --white: #fff;
     --black: #000;
     --text-color: #070721;
     --link-color: #0063d3;
     --warning-color: #e2103d;
+    --good-color: #00a888;
 
     --font-family: 'Segoe UI', Verdana, sans-serif;
 
-    --size-text-step: 1.6em;
-    --size-text-legend: 1.4em;
-    --size-text-label: 1.2em;
+    --size-text-step: 1.4em;
+    --size-text-legend: 1.2em;
+    --size-text-label: 1.0em;
 }
 
 body {
     width: 100vw;
     height: 100vh;
     font-family: var(--font-family);
-    background: var(--white)
+    background: var(--primary-color);
 }
 
 #school-warning {
@@ -34,12 +36,15 @@ body {
     text-transform: uppercase;
     width: 100%;
     text-align: center;
-    padding: .5em;
+    padding: .2em;
     font-size: 1.3em;
 }
 
 h1 {
-    margin: .8em 2em;
+    padding: .8em 2em;
+    background: var(--secondary-color);
+    color: var(--white);
+    width: 100%;
 }
 
 form {
@@ -50,12 +55,9 @@ form {
     padding: 2em;
     border-radius: 2em;
 
-    >fieldset {
-
-        > legend {
-            font-size: var(--size-text-step);
-            font-weight: bold;
-        }
+    >fieldset>legend {
+        font-size: var(--size-text-step);
+        font-weight: bold;
     }
 }
 
@@ -75,7 +77,7 @@ form>fieldset {
 
 fieldset {
     border:none;
-    margin: 1em 0;
+    margin: 0.5em 0;
 }
 
 legend {
@@ -84,8 +86,13 @@ legend {
 }
 
 label {
-    font-size: var(--size-text-label)
+    font-size: var(--size-text-label);
+
+    input {
+        margin-left: 1em;
+    }
 }
+
 
 .input-name {
     display: flex;
@@ -93,12 +100,12 @@ label {
     gap: 1em;
     flex-wrap: wrap;
 
-    input:first-of-type {
+    input {
         max-width: 5em;
     }
 
-    ipnut:nth-of-type(2) {
-        max-width: 5em;
+    label:last-of-type input {
+        max-width: 10em;
     }
 }
 
@@ -122,20 +129,24 @@ label {
 
     input {
         position: absolute;
-        opacity: 0;
+        display: none;
         width: 100%;
         
     }
 
     &:has(input:checked){
-        border: 2px solid var(--secondary-color);
+        border: 2px solid var( --selected-color);
         color: var(--secondary-color);
     }
 }
 
+input[type="text"], input[type="number"] {
+    padding: 0.5em;
+}
+
 hr {
     border: 2px solid var(--primary-color);
-    width: clamp(50px, 60%, 20em);
+    width: clamp(50px, 50%, 20em);
     margin: 1em 0;
 }
 
@@ -145,7 +156,9 @@ hr {
 
 .step.active {
     display: block;
-    min-height: 60vh;
+    height: 60vh;
+    overflow-y: scroll;
+
 }
 
 #step-buttons {
@@ -219,3 +232,4 @@ hr {
 .previousBtn-active {
     display: block;
 }
+

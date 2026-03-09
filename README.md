@@ -177,7 +177,25 @@ Checklist voor vandaag
 - Tekstvakken mogen alleen tekst ontvangen, dus je bijvoorbeeld geen getallen invullen bij voorletters van overledene
 - De submit knop is geen submit knop als javsacript niet werkt
 - tekstvelden zijn required als javascript niet aan staat, ook als je ze niet hoeft in te vullen
+- Styling
+
+Vandaag heb ik eerst een beetje validatie nog gedaan waar ik achter kwam tijdens het voortgangsgesprek van vrijdag. Hier had ik een checklistje voor gemaakt zodat ik makkelijk af kon strepen. Per onderdeel was ik er ook niet lang mee bezig. Sommige tekstvakken zoals de naam konden nummers ontvangen, dus daar heb ik een pattern op gezet. De submit knop werd via Javascript een submit gemaakt, dus dat was een probleem als javascript niet laad. En dat sommige optionele inputs required zijn als javasdcript niet laad. Dit heb ik gefixt door alle optionele inputs een class te geven en die required te maken via de javascript. Per stuk van die onderdelen had ik een 0,5 uur nodig. De rest van de dag ben ik bezig geweest met verschillende onderdelen van de styling. Zo heb ik bijvoorbeeld de radio buttons gestyled met behulp van ChatGPT gedaan en heb ik een beetje gespeeld met margins, paddings, flex en kleuren om de rest van het formulier te stylen. Maar ben daar uiteraard nog niet 100% klaar mee.
+
+<img src="Assets/README_imgs/Dag5-Voortgang.png"> 
 
 #### Gastcollege Rijk van Zanten
 Het was interessant om te horen hoe de studiejaren van Rijk zijn geweest en welke keuzes hij had gemaakt om te komen tot waar hij nu is. Het was wel cool om te horen hoe hij als een startersbedrijf begon samen met 1 ander persoon. Maar nu ondertussen meer dan 500 contributers heeft op zijn GitHub repository. Dit wil niet zeggen dat ik ook van mijzelf verwacht.
 
+#### Weekly Geek: What happened to Text Inputs
+Bron: https://briefs.video/videos/what-happened-to-text-inputs/ <br><br>
+
+Doelgroep wordt verdeeld in 2 groepen. Worden in de video Adrian en Chris genoemd. Adrian is een gebruiker van het web, wilt dat het makkelijk en snel allemaal kan zodat hij weer andere dingen kan doen. Chris is een designer van het web. Chris denkt dat je alleen vooruitgang kan maken als je dingen anders en nieuw doet.<br>
+
+Chris probeert vaak dingen op te lossen, die niet eens kapot zijn. Als voorbeeld wordt er bijvoorbeeld gebruikt dat hyperlinks standaard een onderlijning hebben, zodat iedereen meteen herkent wat wel en niet een link is. Hierbij wil je niet te veel veranderen, dus ook niet bijvoorbeeld een ander kleurtje maken, want dat helpt kleurenblinden niet.<br>
+
+Een ander voorbeeld is input velden, je wilt niet alleen een lijntje hebben waar je tekst op kan zetten, het is dan eerder een "onput" dan een input. Het toevoegen van een label kan werken voor een enkel input veld, maar wordt al snel onduidelijk zodra je meer velden hebt. HEt is geen oplossing om er een placeholder van te maken, dat wordt verwidjerd zodra je begint met typen. Placeholder kleur aanpassen helpt ook niks, want het veld lijkt dan al ingevuld. Een label toevoegen kan dus veel helpen, maar maak hem niet "floating", leidt alleen maar af en is niet nodig.<br>
+Het is beter om gewoon meteen een goed duidelijk design te kiezen voor je text input velden zodat je meer aandacht kan besteden aan validatie.
+<br><br>
+Ik ben eens met veel punten uit deze video. Ik ben altijd van mening dat functionaliteit voorop moet staan en niet uiterlijk. Uiterlijk kan helpen om dingen duidelijker te maken, maar de functionaliteit moet er niet onder leiden. Een input heeft niet veel nodig om duidelijker gemaakt te worden behalve een label. Het label moet duidelijk zijn over welk input veld het gaat, en vooral niet afleiden van het doel van een formulier.
+
+#### Checkout met

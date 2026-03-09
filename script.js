@@ -192,10 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
             }
-
         });
     });
-
 });
 
 
