@@ -17,20 +17,21 @@
             <!-- Pagina 1 - a -->
             <fieldset id="step1" class="step">
                 <legend>Gegevens van de overledene</legend>
+                <hr>
                 <!-- De naam van de overledene bestaat uit drie delen: voorletter(s), tussenvoegsel(s) en achternaam. -->
-                <fieldset>
+                <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
                         Initialen
-                        <input required type="text" name="initials">
+                        <input required type="text" name="initials" pattern="[A-Za-z]+">
                     </label>
                     <label>
                         Tussenvoegsel
-                        <input type="text" name="infix">
+                        <input type="text" name="infix" pattern="[A-Za-z]+">
                     </label>
                     <label>
                         Achternaam
-                        <input required type="text" name="lastname">
+                        <input required type="text" name="lastname" pattern="[A-Za-z]+">
                     </label>
                 </fieldset>
 
@@ -43,7 +44,7 @@
                 AI het pattern laten genereren met prompt: Give me an html input pattern for a type=text so that only 9 numbers can get added in that text field
                 -->
                     <label for="bsn-deceased">
-                        BSN<input required type="text" name="bsn" pattern="^\d{9}$" minlength="9" maxlength="9" id="bsn-deceased">
+                        BSN<input required type="text" name="bsn" pattern="^\d{8,9}$" minlength="8" maxlength="9" id="bsn-deceased">
                     </label>
                 </fieldset>
 
@@ -65,53 +66,60 @@
             <!-- Pagina 1 - b-->
             <fieldset id="step2" class="step">
                 <legend>Gegevens van de erfgenaam</legend>
+                <hr>
                 <!--Was de erfgename getrouwd aan de overledene-->
                 <fieldset>
                     <legend>Was de overledene getrouwd of had de overledene een
                         geregistreerde partner op het moment van overlijden?</legend>
                     <!--Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/radio-->
-                    <label>
-                        <input required type="radio" name="married" value="yes">Ja
-                    </label>
-                    <label>
-                        <input required type="radio" name="married" value="no">Nee
-                    </label>
+                    <div class="radio-flex">
+                        <label class="radio-button">
+                            <input required type="radio" name="married" value="yes">Ja
+                        </label>
+                        <label class="radio-button">
+                            <input required type="radio" name="married" value="no">Nee
+                        </label>
+                    </div>
                 </fieldset>
 
                 <div class="married-dependent-fields">
                     <fieldset>
                         <legend>Hadden de overledene en diens echtgenoot of geregistreerde partner huwelijkse of
                             partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>
-                        <label>
-                            <input required type="radio" name="marriage-recorded" value="yes">Ja
+                    <div class="radio-flex">
+                        <label class="radio-button">
+                            <input class="required" type="radio" name="marriage-recorded" value="yes">Ja
                         </label>
-                        <label>
-                            <input required type="radio" name="marriage-recorded" value="no">Nee
+                        <label class="radio-button">
+                            <input class="required" type="radio" name="marriage-recorded" value="no">Nee
                         </label>
+                    </div>
                     </fieldset>
 
                     <div class="marriage-recorded-dependent-fields">
                         <fieldset>
                             <legend>Hadden de overledene en diens partner een finaal
                                 verrekenbeding?</legend>
-                            <label>
-                                <input required type="radio" name="final-settlement" value="yes">Ja
-                            </label>
-                            <label>
-                                <input required type="radio" name="final-settlement" value="no">Nee
-                            </label>
+                            <div class="radio-flex">
+                                <label class="radio-button">
+                                    <input class="required" type="radio" name="final-settlement" value="yes">Ja
+                                </label>
+                                <label class="radio-button">
+                                    <input class="required" type="radio" name="final-settlement" value="no">Nee
+                                </label>
+                            </div>
                         </fieldset>
 
                         <fieldset>
                             <legend>Datum huwelijkse of partnerschapsvoorwaarden</legend>
                             <label for="day-of-marriage">
-                                Dag<input required type="number" name="day-of-marriage" id="day-of-marriage" min="1" max="31" pattern="^\d+$">
+                                Dag<input class="required" type="number" name="day-of-marriage" id="day-of-marriage" min="1" max="31" pattern="^\d+$">
                             </label>
                             <label for="month-of-marriage">
-                                Maand<input required type="number" name="month-of-marriage" id="month-of-marriage" min="1" max="12" pattern="^\d+$">
+                                Maand<input class="required" type="number" name="month-of-marriage" id="month-of-marriage" min="1" max="12" pattern="^\d+$">
                             </label>
                             <label for="year-of-marriage">
-                                Jaar<input required type="number" name="year-of-marriage" id="year-of-marriage" min="1900" max="2026" pattern="^\d+$">
+                                Jaar<input class="required" type="number" name="year-of-marriage" id="year-of-marriage" min="1900" max="2026" pattern="^\d+$">
                             </label>
                         </fieldset>
                     </div>
@@ -121,35 +129,41 @@
             <!-- Pagina 1 - c -->
             <fieldset id="step3" class="step">
                 <legend>Kinderen van overledene</legend>
+                <hr>
                 <fieldset>
                     <legend>Had de overledene kinderen?</legend>
-                    <label>
+                <div class="radio-flex">
+                    <label class="radio-button">
                         <input required type="radio" name="had-children" value="yes">Ja
                     </label>
-                    <label>
+                    <label class="radio-button">
                         <input required type="radio" name="had-children" value="no">Nee
                     </label>
+                </div>
                 </fieldset>
                 <div class="children-dependent-fields">
                     <fieldset>
-                        <legend>Is 1 van deze kinderen eerder overleden dan de overledene voor wie u nu aangifte doet?
-                        </legend>
-                        <label>
-                            <input required type="radio" name="child-deceased" value="yes">Ja
+                        <legend>Is 1 van deze kinderen eerder overleden dan de overledene voor wie u nu aangifte doet?</legend>
+                    <div class="radio-flex">
+                        <label class="radio-button">
+                            <input class="required" type="radio" name="child-deceased" value="yes">Ja
                         </label>
-                        <label>
-                            <input required type="radio" name="child-deceased" value="no">Nee
+                        <label class="radio-button">
+                            <input class="required" type="radio" name="child-deceased" value="no">Nee
                         </label>
+                    </div>
                     </fieldset>
                     <div class="deceased-child-dependent-fields">
                         <fieldset>
                             <legend>Had dit overleden kind zelf kinderen?</legend>
-                            <label>
-                                <input required type="radio" name="deceased-child-had-children" value="yes">Ja
+                        <div class="radio-flex">
+                            <label class="radio-button">
+                                <input class="required" type="radio" name="deceased-child-had-children" value="yes">Ja
                             </label>
-                            <label>
-                                <input required type="radio" name="deceased-child-had-children" value="no">Nee
+                            <label class="radio-button">
+                                <input class="required" type="radio" name="deceased-child-had-children" value="no">Nee
                             </label>
+                        </div>
                         </fieldset>
                     </div>
                 </div>
@@ -158,14 +172,17 @@
             <!-- Pagina 1 - d -->
             <fieldset id="step4" class="step">
                 <legend>Laatste testament</legend>
+                <hr>
                 <fieldset>
                     <legend>Had de overledene een testament?</legend>
-                    <label>
+                <div class="radio-flex">
+                    <label class="radio-button">
                         <input required type="radio" name="had-will" value="yes">Ja
                     </label>
-                    <label>
+                    <label class="radio-button">
                         <input required type="radio" name="had-will" value="no">Nee
                     </label>
+                </div>
                 </fieldset>
 
                 <div class="will-dependent-fields">
@@ -175,42 +192,42 @@
                             <legend>Protocolnummer notaris</legend>
                             <label for="protocolnumber-notary">
                                 Protocolnummer notaris
-                                <input type="text" name="protocolnumber-notary" id="protocolnumber-notary" min="4" maxlength="6" pattern="^\d+$">
+                                <input class="required" type="text" name="protocolnumber-notary" id="protocolnumber-notary" min="4" maxlength="6" pattern="^\d+$">
                             </label>
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset class="input-name">
                             <legend>Naam</legend>
                             <label>
-                                Initialen<input required type="text" name="will-initials">
+                                Initialen<input class="required" type="text" name="will-initials" pattern="[A-Za-z]+">
                             </label>
 
                             <label>
-                                Tussenvoegsel<input type="text" name="will-infix">
+                                Tussenvoegsel<input type="text" name="will-infix" pattern="[A-Za-z]+">
                             </label>
 
                             <label>
-                                Achternaam<input required type="text" name="will-lastname">
+                                Achternaam<input class="required" type="text" name="will-lastname" pattern="[A-Za-z]+">
                             </label>
                         </fieldset>
 
                         <fieldset>
                             <legend>Vestigingsplaats</legend>
                             <label for="place-of-business-notary">
-                                Vestigingsplaats notaris<input required type="text" name="place-of-business-notary" id="place-of-business-notary">
+                                Vestigingsplaats notaris<input class="required" type="text" name="place-of-business-notary" id="place-of-business-notary">
                             </label>
                         </fieldset>
 
                         <fieldset>
                             <legend>Datum van het testament of van de laatste wijziging</legend>
                             <label for="day-of-will">
-                                Dag<input required type="number" name="day-of-will" id="day-of-will" min="1" max="31" pattern="^\d+$">
+                                Dag<input class="required" type="number" name="day-of-will" id="day-of-will" min="1" max="31" pattern="^\d+$">
                             </label>
                             <label for="month-of-will">
-                                Maand<input required type="number" name="month-of-will" id="month-of-will" min="1" max="12" pattern="^\d+$">
+                                Maand<input class="required" type="number" name="month-of-will" id="month-of-will" min="1" max="12" pattern="^\d+$">
                             </label>
                             <label for="year-of-will">
-                                Jaar<input required type="number" name="year-of-will" id="year-of-will" min="1900" max="2026" pattern="^\d+$">
+                                Jaar<input class="required" type="number" name="year-of-will" id="year-of-will" min="1900" max="2026" pattern="^\d+$">
                             </label>
                         </fieldset>
                     </fieldset>
@@ -220,42 +237,39 @@
             <!-- Pagina 3 - a -->
             <fieldset id="step5" class="step">
                 <legend>Voor wie doet u aangifte?</legend>
+                <hr>
                 <fieldset>
                     <legend>Heeft de overledene in het testament een executeur aangewezen om de erfenis af te handelen?
                     </legend>
 
-                    <label for="is-executioner">
+                    <label for="is-executioner" class="radio-button">
                         <input required type="radio" id="is-executioner" name="executioner">
                         Ik ben executeur en doe aangifte voor alle personen en/of instellingen
-                        die iets krijgen uit de nalatenschap (verkrijgers). Geef aan voor hoeveel verkrijgers u
-                        aangifte doet. Bent u zelf ook verkrijger? Tel uzelf dan ook mee.
+                        die iets krijgen uit de nalatenschap (verkrijgers).
                     </label>
 
                     <!-- Voor als er geen executeur is aangewezen -->
-                    <label for="is-heir">
+                    <label for="is-heir" class="radio-button">
                         <input required type="radio" id="is-heir" name="executioner">
                         Ik ben erfgenaam en ben gemachtigd om aangifte te doen voor meerdere
                         personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers).
-                        Geef aan voor hoeveel verkrijgers u aangifte doet. Tel uzelf ook mee.
                     </label>
 
-                    <label for="is-heir-multiple">
+                    <label for="is-heir-multiple" class="radio-button">
                         <input required type="radio" id="is-heir-multiple" name="executioner">
                         Ik ben erfgenaam en doe samen met andere erfgenamen aangifte.
-                        Geef het aantal personen en/of instellingen aan die iets krijgen uit de nalatenschap
-                        (verkrijgers). Tel uzelf ook mee.
                     </label>
 
-                    <label for="is-heir-single">
+                    <label for="is-heir-single" class="radio-button">
                         <input required type="radio" id="is-heir-single" name="executioner">
                         Ik ben erfgenaam en doe alleen aangifte voor mijzelf.
                     </label>
 
-                    <label for="is-non-heir">
+                    <label for="is-non-heir" class="radio-button">
                         <input required type="radio" id="is-non-heir" name="executioner">
                         Ik ben geen erfgenaam, maar ben gemachtigd om aangifte te doen.
-                        Geef aan voor hoeveelverkrijgers u aangifte doet.
                     </label>
+
 
                     <label for="number-of-beneficiaries">
                         Hoeveelheid verkrijgers
@@ -267,13 +281,14 @@
             <!-- Pagina 3 - b -->
             <fieldset id="step6" class="step">
                 <legend>Voor wie doet u geen aangifte?</legend>
+                <hr>
                 <fieldset>
                     <legend>Zijn er verkrijgers voor wie u geen aangifte doet?</legend>
-                    <label for="no-beneficiaries-no">
-                        <input required type="radio" name="are-beneficiaries" id="no-beneficiaries-no" value="no">Nee
+                    <label for="no-beneficiaries-no" class="radio-button">
+                        <input class="required" type="radio" name="are-beneficiaries" id="no-beneficiaries-no" value="no">Nee
                     </label>
-                    <label for="are-beneficiaries-yes">
-                        <input required type="radio" name="are-beneficiaries" id="are-beneficiaries-yes" value="yes">Ja
+                    <label for="are-beneficiaries-yes" class="radio-button">
+                        <input class="required" type="radio" name="are-beneficiaries" id="are-beneficiaries-yes" value="yes">Ja
                     </label>
                     <div class="show-number-of-beneficiaries">
                         <label for="number-of-beneficiaries-not-charges">
@@ -292,33 +307,33 @@
                         </label>
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset class="input-name">
                         <legend>Naam</legend>
                         <label>
-                            Initialen<input required type="text" name="beneficiary-initials">
+                            Initialen<input required type="text" name="beneficiary-initials" pattern="[A-Za-z]+">
                         </label>
                         <label>
-                            Tussenvoegsel<input type="text" name="beneficiary-infix">
+                            Tussenvoegsel<input type="text" name="beneficiary-infix" pattern="[A-Za-z]+">
                         </label>
                         <label>
-                            Achternaam<input required type="text" name="beneficiary-lastname">
+                            Achternaam<input required type="text" name="beneficiary-lastname" pattern="[A-Za-z]+">
                         </label>
                     </fieldset>
                     <fieldset>
                         <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
-                        <label for="beneficiary-whole-estate-yes">
+                        <label for="beneficiary-whole-estate-yes" class="radio-button">
                             <input required type="radio" name="beneficiary-whole-estate" id="beneficiary-whole-estate-yes" value="yes">Ja
                         </label>
-                        <label for="beneficiary-whole-estate-no">
+                        <label for="beneficiary-whole-estate-no" class="radio-button">
                             <input required type="radio" name="beneficiary-whole-estate" id="beneficiary-whole-estate-no" value="no">Nee
                         </label>
                     </fieldset>
                     <fieldset>
                         <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
-                        <label for="beneficiary-legitimate-portion-yes">
+                        <label for="beneficiary-legitimate-portion-yes" class="radio-button">
                             <input required type="radio" name="beneficiary-legitimate-portion" id="beneficiary-legitimate-portion-yes" value="yes"> Ja
                         </label>
-                        <label for="beneficiary-legitimate-portion-no">
+                        <label for="beneficiary-legitimate-portion-no" class="radio-button">
                             <input required type="radio" name="beneficiary-legitimate-portion" id="beneficiary-legitimate-portion-no" value="no">Nee
                         </label>
                     </fieldset>
@@ -329,164 +344,168 @@
             <!-- Fallback voor als Javascript niet werkt -->
             <fieldset class="step fall-back-step">
                 <legend>Verkrijger 1</legend>
+                <hr>
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
                     <label for="bsn-beneficiary-1">
-                        BSN<input required type="text" name="bsn-beneficiary-1" pattern="^\d+$" min="9" max="9" id="bsn-beneficiary-1">
+                        BSN<input type="text" name="bsn-beneficiary-1" pattern="^\d+$" min="9" max="9" id="bsn-beneficiary-1">
                     </label>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
-                        Initialen<input required type="text" name="beneficiary-initials-1">
+                        Initialen<input type="text" name="beneficiary-initials-1" pattern="[A-Za-z]+">
                     </label>
                     <label>
-                        Tussenvoegsel<input type="text" name="beneficiary-infix-1">
+                        Tussenvoegsel<input type="text" name="beneficiary-infix-1" pattern="[A-Za-z]+">
                     </label>
                     <label>
-                        Achternaam<input required type="text" name="beneficiary-lastname-1">
+                        Achternaam<input type="text" name="beneficiary-lastname-1" pattern="[A-Za-z]+">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
-                    <label for="beneficiary-whole-estate-yes">
-                        <input required type="radio" name="beneficiary-whole-estate-1" id="beneficiary-whole-estate-yes-1" value="yes">Ja
+                    <label for="beneficiary-whole-estate-yes" class="radio-button">
+                        <input type="radio" name="beneficiary-whole-estate-1" id="beneficiary-whole-estate-yes-1" value="yes">Ja
                     </label>
-                    <label for="beneficiary-whole-estate-no">
-                        <input required type="radio" name="beneficiary-whole-estate-1" id="beneficiary-whole-estate-no-1" value="no">Nee
+                    <label for="beneficiary-whole-estate-no" class="radio-button">
+                        <input type="radio" name="beneficiary-whole-estate-1" id="beneficiary-whole-estate-no-1" value="no">Nee
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
-                    <label for="beneficiary-legitimate-portion-yes">
-                        <input required type="radio" name="beneficiary-legitimate-portion-1" id="beneficiary-legitimate-portion-yes-1" value="yes">Ja
+                    <label for="beneficiary-legitimate-portion-yes" class="radio-button">
+                        <input type="radio" name="beneficiary-legitimate-portion-1" id="beneficiary-legitimate-portion-yes-1" value="yes">Ja
                     </label>
-                    <label for="beneficiary-legitimate-portion-no">
-                        <input required type="radio" name="beneficiary-legitimate-portion-1" id="beneficiary-legitimate-portion-no-1" value="no">Nee
+                    <label for="beneficiary-legitimate-portion-no" class="radio-button">
+                        <input type="radio" name="beneficiary-legitimate-portion-1" id="beneficiary-legitimate-portion-no-1" value="no">Nee
                     </label>
                 </fieldset>
             </fieldset>
 
             <fieldset class="step fall-back-step">
                 <legend>Verkrijger 2</legend>
+                <hr>
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
                     <label for="bsn-beneficiary-2">
-                        BSN<input required type="text" name="bsn-beneficiary-2" pattern="^\d+$" min="9" max="9" id="bsn-beneficiary-2">
+                        BSN<input type="text" name="bsn-beneficiary-2" pattern="^\d+$" min="9" max="9" id="bsn-beneficiary-2">
                     </label>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
-                        Initialen<input required type="text" name="beneficiary-initials-2">
+                        Initialen<input type="text" name="beneficiary-initials-2" pattern="[A-Za-z]+">
                     </label>
                     <label>
-                        Tussenvoegsel<input type="text" name="beneficiary-infix-2">
+                        Tussenvoegsel<input type="text" name="beneficiary-infix-2" pattern="[A-Za-z]+">
                     </label>
                     <label>
-                        Achternaam<input required type="text" name="beneficiary-lastname-2">
+                        Achternaam<input type="text" name="beneficiary-lastname-2" pattern="[A-Za-z]+">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
-                    <label for="beneficiary-whole-estate-yes">
-                        <input required type="radio" name="beneficiary-whole-estate-2" id="beneficiary-whole-estate-yes-2" value="yes">Ja
+                    <label for="beneficiary-whole-estate-yes" class="radio-button">
+                        <input type="radio" name="beneficiary-whole-estate-2" id="beneficiary-whole-estate-yes-2" value="yes">Ja
                     </label>
-                    <label for="beneficiary-whole-estate-no">
-                        <input required type="radio" name="beneficiary-whole-estate-2" id="beneficiary-whole-estate-no-2" value="no">Nee
+                    <label for="beneficiary-whole-estate-no" class="radio-button">
+                        <input type="radio" name="beneficiary-whole-estate-2" id="beneficiary-whole-estate-no-2" value="no">Nee
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
-                    <label for="beneficiary-legitimate-portion-yes">
-                        <input required type="radio" name="beneficiary-legitimate-portion-2" id="beneficiary-legitimate-portion-yes-2" value="yes">Ja
+                    <label for="beneficiary-legitimate-portion-yes" class="radio-button">
+                        <input type="radio" name="beneficiary-legitimate-portion-2" id="beneficiary-legitimate-portion-yes-2" value="yes">Ja
                     </label>
-                    <label for="beneficiary-legitimate-portion-no">
-                        <input required type="radio" name="beneficiary-legitimate-portion-2" id="beneficiary-legitimate-portion-no-2" value="no">Nee
+                    <label for="beneficiary-legitimate-portion-no" class="radio-button">
+                        <input type="radio" name="beneficiary-legitimate-portion-2" id="beneficiary-legitimate-portion-no-2" value="no">Nee
                     </label>
                 </fieldset>
             </fieldset>
 
             <fieldset class="step fall-back-step">
                 <legend>Verkrijger 3</legend>
+                <hr>
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
                     <label for="bsn-beneficiary-3">
-                        BSN<input required type="text" name="bsn-beneficiary-3" pattern="^\d+$" min="9" max="9" id="bsn-beneficiary-3">
+                        BSN<input type="text" name="bsn-beneficiary-3" pattern="^\d+$" min="9" max="9" id="bsn-beneficiary-3">
                     </label>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
-                        Initialen<input required type="text" name="beneficiary-initials-3">
+                        Initialen<input type="text" name="beneficiary-initials-3" pattern="[A-Za-z]+">
                     </label>
                     <label>
-                        Tussenvoegsel<input type="text" name="beneficiary-infix-3">
+                        Tussenvoegsel<input type="text" name="beneficiary-infix-3" pattern="[A-Za-z]+">
                     </label>
                     <label>
-                        Achternaam<input required type="text" name="beneficiary-lastname-3">
+                        Achternaam<input type="text" name="beneficiary-lastname-3" pattern="[A-Za-z]+">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
-                    <label for="beneficiary-whole-estate-yes">
-                        <input required type="radio" name="beneficiary-whole-estate-3" id="beneficiary-whole-estate-yes-3" value="yes">Ja
+                    <label for="beneficiary-whole-estate-yes" class="radio-button">
+                        <input type="radio" name="beneficiary-whole-estate-3" id="beneficiary-whole-estate-yes-3" value="yes">Ja
                     </label>
-                    <label for="beneficiary-whole-estate-no">
-                        <input required type="radio" name="beneficiary-whole-estate-3" id="beneficiary-whole-estate-no-3" value="no">Nee
+                    <label for="beneficiary-whole-estate-no" class="radio-button">
+                        <input type="radio" name="beneficiary-whole-estate-3" id="beneficiary-whole-estate-no-3" value="no">Nee
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
-                    <label for="beneficiary-legitimate-portion-yes">
-                        <input required type="radio" name="beneficiary-legitimate-portion-3" id="beneficiary-legitimate-portion-yes-3" value="yes">Ja
+                    <label for="beneficiary-legitimate-portion-yes" class="radio-button">
+                        <input type="radio" name="beneficiary-legitimate-portion-3" id="beneficiary-legitimate-portion-yes-3" value="yes">Ja
                     </label>
-                    <label for="beneficiary-legitimate-portion-no">
-                        <input required type="radio" name="beneficiary-legitimate-portion-3" id="beneficiary-legitimate-portion-no-3" value="no">Nee
+                    <label for="beneficiary-legitimate-portion-no" class="radio-button  ">
+                        <input type="radio" name="beneficiary-legitimate-portion-3" id="beneficiary-legitimate-portion-no-3" value="no">Nee
                     </label>
                 </fieldset>
             </fieldset>
 
             <fieldset class="step fall-back-step">
                 <legend>Verkrijger 4</legend>
+                <hr>
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
                     <label for="bsn-beneficiary-4">
-                        BSN<input required type="text" name="bsn-beneficiary-4" pattern="^\d+$" min="9" max="9" id="bsn-beneficiary-4">
+                        BSN<input type="text" name="bsn-beneficiary-4" pattern="^\d+$" min="9" max="9" id="bsn-beneficiary-4">
                     </label>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
-                        Initialen<input required type="text" name="beneficiary-initials-4">
+                        Initialen<input type="text" name="beneficiary-initials-4" pattern="[A-Za-z]+">
                     </label>
                     <label>
-                        Tussenvoegsel<input type="text" name="beneficiary-infix-4">
+                        Tussenvoegsel<input type="text" name="beneficiary-infix-4" pattern="[A-Za-z]+">
                     </label>
                     <label>
-                        Achternaam<input required type="text" name="beneficiary-lastname-4">
+                        Achternaam<input type="text" name="beneficiary-lastname-4" pattern="[A-Za-z]+">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
-                    <label for="beneficiary-whole-estate-yes">
-                        <input required type="radio" name="beneficiary-whole-estate-4" id="beneficiary-whole-estate-yes-4" value="yes">Ja
+                    <label for="beneficiary-whole-estate-yes" class="radio-button">
+                        <input type="radio" name="beneficiary-whole-estate-4" id="beneficiary-whole-estate-yes-4" value="yes">Ja
                     </label>
-                    <label for="beneficiary-whole-estate-no">
-                        <input required type="radio" name="beneficiary-whole-estate-4" id="beneficiary-whole-estate-no-4" value="no">Nee
+                    <label for="beneficiary-whole-estate-no" class="radio-button">
+                        <input type="radio" name="beneficiary-whole-estate-4" id="beneficiary-whole-estate-no-4" value="no">Nee
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
-                    <label for="beneficiary-legitimate-portion-yes">
-                        <input required type="radio" name="beneficiary-legitimate-portion-4" id="beneficiary-legitimate-portion-yes-4" value="yes">Ja
+                    <label for="beneficiary-legitimate-portion-yes" class="radio-button">
+                        <input type="radio" name="beneficiary-legitimate-portion-4" id="beneficiary-legitimate-portion-yes-4" value="yes">Ja
                     </label>
-                    <label for="beneficiary-legitimate-portion-no">
-                        <input required type="radio" name="beneficiary-legitimate-portion-4" id="beneficiary-legitimate-portion-no-4" value="no">Nee
+                    <label for="beneficiary-legitimate-portion-no" class="radio-button">
+                        <input type="radio" name="beneficiary-legitimate-portion-4" id="beneficiary-legitimate-portion-no-4" value="no">Nee
                     </label>
                 </fieldset>
             </fieldset>
@@ -494,11 +513,12 @@
             <!-- Pagina 3 - c -->
             <fieldset id="step7" class="step">
                 <legend>Naar wie wilt u dat wij de aanslag erfbelasting sturen?</legend>
-                <label for="send-separate-assessment">
+                <hr>
+                <label for="send-separate-assessment" class="radio-button">
                     <input required type="radio" name="send-separate-assessment" id="send-separate-assessment">
                     Stuur naar iedere verkrijger van (een deel van) de erfenis een eigen belastingaanslag.
                 </label>
-                <label for="send-separate-assessment-to-executor">
+                <label for="send-separate-assessment-to-executor" class="radio-button">
                     <input required type="radio" name="send-separate-assessment" id="send-separate-assessment-to-executor">
                     Stuur de belastingaanslag(en) naar de executeur of naar de erfgenaam die ook namens andere personen
                     en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers) aangifte heeft gedaan; dit mag
@@ -512,17 +532,18 @@
             <!-- Pagina 3 - e -->
             <fieldset id="step8" class="step">
                 <legend>Gegevens executeur of gemachtigde</legend>
+                <hr>
                 <fieldset>
                     <legend>BSN Executeur of gemachtigde</legend>
                     <label for="bsn-executioner">
-                        BSN<input required type="text" name="executioner-bsn" pattern="^\d+$" min="9" max="9" id="bsn-executioner">
+                        BSN<input class="required" type="text" name="executioner-bsn" pattern="^\d+$" min="9" max="9" id="bsn-executioner">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Protocol nummer</legend>
                     <label for="executioner-protocol-number">
                         Protocolnummer (als deexecuteur ook notaris is)
-                        <input required type="text" name="executioner-protocol-number" id="executioner-protocol-number" pattern="^\d+$" min="4" max="6">
+                        <input class="required" type="text" name="executioner-protocol-number" id="executioner-protocol-number" pattern="^\d+$" min="4" max="6">
                     </label>
                 </fieldset>
                 <fieldset>
@@ -531,45 +552,45 @@
                     </legend>
                     <label for="executioner-beconnumber">
                         Beconnummer van de adviseur
-                        <input required type="text" name="executioner-beconnumber" id="executioner-beconnumber" pattern="^\d+$" min="7" max="7">
+                        <input class="required" type="text" name="executioner-beconnumber" id="executioner-beconnumber" pattern="^\d+$" min="7" max="7">
                     </label>
                 </fieldset>
-                <fieldset>
+                <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label for="executioner-initials">
-                        Initialen<input required type="text" name="executioner-initials" id="executioner-initials">
+                        Initialen<input class="required" type="text" name="executioner-initials" id="executioner-initials" pattern="[A-Za-z]+">
                     </label>
                     <label for="executioner-infix">
-                        Tussenvoegsel<input type="text" name="executioner-infix" id="executioner-infix">
+                        Tussenvoegsel<input type="text" name="executioner-infix" id="executioner-infix" pattern="[A-Za-z]+">
                     </label>
                     <label for="executioner-lastname">
-                        Achternaam<input required type="text" name="executioner-lastname" id="executioner-lastname">
+                        Achternaam<input class="required" type="text" name="executioner-lastname" id="executioner-lastname" pattern="[A-Za-z]+">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Naam instelling</legend>
                     <label for="executioner-institution-name">
                         Naam instelling (bijvoorbeeldeen notariskantoor)
-                        <input required type="text" name="executioner-institution-name" id="executioner-institution-name">
+                        <input class="required" type="text" name="executioner-institution-name" id="executioner-institution-name">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Datum</legend>
                     <label for="day-of-execution">
-                        Dag<input required type="number" name="day-of-execution" id="day-of-execution" min="1" max="31" pattern="^\d+$">
+                        Dag<input class="required" type="number" name="day-of-execution" id="day-of-execution" min="1" max="31" pattern="^\d+$">
                     </label>
                     <label for="month-of-execution">
-                        Maand<input required type="number" name="month-of-execution" id="month-of-execution" min="1" max="12" pattern="^\d+$">
+                        Maand<input class="required" type="number" name="month-of-execution" id="month-of-execution" min="1" max="12" pattern="^\d+$">
                     </label>
                     <label for="year-of-execution">
-                        Jaar<input required type="number" name="year-of-execution" id="year-of-execution" min="1900" max="2026" pattern="^\d+$">
+                        Jaar<input class="required" type="number" name="year-of-execution" id="year-of-execution" min="1900" max="2026" pattern="^\d+$">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Handtekening</legend>
                     <label for="executioner-autograph">
                         Uw handtekening
-                        <input required type="file" name="executioner-autograph" id="executioner-autograph" accept="image/*">
+                        <input class="required" type="file" name="executioner-autograph" id="executioner-autograph" accept="image/*">
                     </label>
                 </fieldset>
 
@@ -577,12 +598,13 @@
 
             <fieldset class="step" id="step9">
                 <legend>Bedankt voor het invullen</legend>
+                <hr>
                 <p>Druk op "Verzenden" om uw aanvraag te versturen.</p>
             </fieldset>
 
             <div id="step-buttons">
-                <button type="button" id="previous-step-button">Vorige</button>
-                <button type="button" id="next-step-button">Volgende</button>
+                <button type="button" id="previous-step-button" class="previousBtn">Vorige</button>
+                <button type="submit" id="next-step-button">Verzenden</button>
             </div>
         </form>
     </div>

@@ -170,3 +170,14 @@ Deze week ben ik vooral bezig geweest met functionaliteit en validatie. Voor de 
 
 #### Voortgangsgesprek
 Tijdens het voortgangsgesprek besefte ik me tijdens het bekijken van andere studenten hun formulier dat ik nog niet validatie heb op bijvoorbeeld de voorletters en achternaam dat je alleen letters kan invullen. Want op het moment kan je ook nog cijfers invullen. Daarnaast was een groot punt bij mij dat ik de enige ben die heeft gekozen om vragen weg te laten in plaats tevoorschijn te laten komen. Er is niet specifiek gezegd dat mijn manier fout is, maar zolang ik goed mijn keuzes kan ondersteunen dat het prima is, want normaal gesproken zou je dit testen met mensen. Voor de rest zagen we nog dat mijn "volgende" knop geen submit knop is als mijn javascript uit staat, dus die moet standaard submit worden en dan in javascript veranderd naar een "volgende" knop. Voor de rest is mijn volgende stap de styling. Niet alleen de styling van het document zelf, maar ook voor error messages en dergelijke moet ik nog naar kijken, maar daar heb ik de tijd voor.
+
+## Week 3
+### Dag 5: Maandag 9 - 3 - 2026
+Checklist voor vandaag
+- Tekstvakken mogen alleen tekst ontvangen, dus je bijvoorbeeld geen getallen invullen bij voorletters van overledene
+- De submit knop is geen submit knop als javsacript niet werkt
+- tekstvelden zijn required als javascript niet aan staat, ook als je ze niet hoeft in te vullen
+
+#### Gastcollege Rijk van Zanten
+Het was interessant om te horen hoe de studiejaren van Rijk zijn geweest en welke keuzes hij had gemaakt om te komen tot waar hij nu is. Het was wel cool om te horen hoe hij als een startersbedrijf begon samen met 1 ander persoon. Maar nu ondertussen meer dan 500 contributers heeft op zijn GitHub repository. Dit wil niet zeggen dat ik ook van mijzelf verwacht.
+

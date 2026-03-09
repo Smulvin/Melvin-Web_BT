@@ -2,10 +2,22 @@ let steps = Array.from(document.querySelectorAll('.step'))
     //Fallback steps weghalen wanneer javascript correct laad
     .filter(step => !step.classList.contains('fall-back-step'));
 const nextBtn = document.getElementById('next-step-button');
+if (nextBtn) {
+    nextBtn.type = "button";
+    nextBtn.textContent = "Volgende";
+}
 const prevBtn = document.getElementById('previous-step-button');
+if (prevBtn) {
+    prevBtn.classList.add('previousBtn-active');
+}
 const numberInput = document.getElementById('number-of-beneficiaries-not-charges');
 const template = document.getElementById('beneficiary-template');
 const beneficiariesContainer = document.getElementById('beneficiaries-container');
+
+const requiredInputs = document.querySelectorAll('.required');
+requiredInputs.forEach(input => {
+    input.setAttribute('required', '');
+});
 
 // Steps volledig inactief maken
 document.querySelectorAll('.fall-back-step').forEach(step => {
@@ -111,7 +123,7 @@ nextBtn?.addEventListener('click', () => {
     if (firstInvalid) {
         firstInvalid.reportValidity();
         return; // Prevent going to next step
-    } 
+    }
 
     // Generate beneficiaries dynamically if on step6
     if (currentStepEl.id === 'step6') {
