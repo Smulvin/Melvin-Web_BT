@@ -255,3 +255,5 @@ Ik ben eens met veel punten uit deze video. Ik ben altijd van mening dat functio
 
 #### Checkout met Mats\
 Mats was vandaag bezig geweest met onder andere validatie. Zo had hij verschillende secties voor of je uit Nederland of uit het buitenland komt. Dit vond ik een interessante aanpak. Hij had hier ook al over nagedacht van hoe het zou zijn als de javascript uit staat. Hij had me even laten zien hoe hij het had gedaan dat je limieten kon zetten om een date input. Hier kan ik misschien later nor kijken voor mijn eigen formulier.
+
+### Dag 6: Dinsdag 10 - 3 - 2026
