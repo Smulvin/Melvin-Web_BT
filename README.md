@@ -257,14 +257,21 @@ Ik ben eens met veel punten uit deze video. Ik ben altijd van mening dat functio
 Mats was vandaag bezig geweest met onder andere validatie. Zo had hij verschillende secties voor of je uit Nederland of uit het buitenland komt. Dit vond ik een interessante aanpak. Hij had hier ook al over nagedacht van hoe het zou zijn als de javascript uit staat. Hij had me even laten zien hoe hij het had gedaan dat je limieten kon zetten om een date input. Hier kan ik misschien later nor kijken voor mijn eigen formulier.
 
 ### Dag 6: Dinsdag 10 - 3 - 2026
-Beginnen met Weekly Geek bespreken
-Verder aan styling
-html schoonmaken door alle for="" en sommige ids weg te halen en geneste inputs duidelijker door labeltekst niet op zelfde regel
-Alle data inputs veranderd naar een input="date"
-asteriks toevoegen aan required fields door ::after in CSS
+Vandaag was ik iets later vanwege gedoe met OV, maar ik had niks gemist van de Weekly Geek. Deze week hadden we weer een wooclap. Deze keer ging hij wel iets meer over de content, dus kon ik de vragen beter beantwoorden. Dit duurde maximaal een uur. De rest van de dag ben ik wat kleine dingetjes de hele tijd gaan doen. Zo ben ik vooral verder gegaan met styling, gewoon een paar kleine dingetjes. Voor de rest heb ik mijn html een beetje schoongemaakt door niet steeds een input te testen in een label en dan ook nog een for attribute te gebruiken. Ik heb alle for attributen weggehaald, want volgens Vasilis is dat alleen nodig voor een specifieke screenreader en dat ze eigenlijk gewoon die screenreader moeten fixen. Voor de rest heb ik mijn HTML gewoon wat overzichtelijker gemaakt door de label tekst niet op dezelfde lijn te zetten als een input veld en heb ik veel inputvelden voor data veranderd voor een input met type="date" omdat ik bij Mats had gezien dat je dat best goed nog steeds kon valideren. Ik moet daar alleen nog een andere keer voor kijken. Voor de rest heb ik een beetje styling gedaan voor validatie, ik had hiervoor user-valid en user:invalid gebruikt, want dat had ik geleerd van Vasilis tijdens een workshop. Door dat te regelen leek het me handiger om van te voren ook al aan te geven welke velden required zijn, aangezien sommige velden geen validatie echt hebben. Ik bedacht om dit met een standaard asteriks te doen. Vasilis kwam meteen met het idee om dat met ::after te doen. UIteraard een goed idee. Het was even puzzelen om de juiste selectors te krijgen zodat de juiste onderdelen een asteriks krijgen, maar het is gelukt. Ik moest alleen hier en daar mijn html een beetje aanpssen.
 
-#### Datums veranderen
-Oude code
+CSS code voor asteriksen
+```
+label:has(input:required) span::after,
+fieldset:not(.step):has(input[type="radio"][required]) > legend::after,
+fieldset:has(>input[type="date"][required]) legend::after,
+.required-warning::before {
+  content: "*";
+  color: red;
+  font-weight: bold;
+}
+```
+<br>
+Oude code voor datums
 ```
 <label for="day-of-passing">
     Dag<input required type="number" name="day-of-passing" id="day-of-passing" min="1" max="31" pattern="^\d+$">
@@ -276,3 +283,6 @@ Oude code
     Jaar<input required type="number" name="year-of-passing" id="year-of-passing" min="1900" max="2026" pattern="^\d+$">
 </label> 
 ```
+
+#### Checkout met Nienke
+Nienke is de eerste persoon die het eerste patroon hetzelfde heeft als ik. Dat delen van het formulier wegvallen in plaats van dat ze erbij komen als je een bepaalde code maakt. Dat was wel fijn om te zien. Voor de rest had ze ook qua styling een soort gelijk iets en had ze de 11-proef van het bsn nummer uitgelegd. Dit klonk niet heel moeilijk, dus misschien dat ik daar zelf ook nog wel even naar ga kijken een keer.

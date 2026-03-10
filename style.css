@@ -31,6 +31,7 @@ body {
     height: 100vh;
     font-family: var(--font-family);
     background: var(--primary-color);
+    overflow-x: hidden;
 }
 
 #school-warning {
@@ -109,9 +110,6 @@ input:user-valid {
     border: 2px solid var(--good-color);
     border-radius: 4px;
 }
-
-
-
 
 .input-name {
     display: flex;
@@ -194,15 +192,22 @@ hr {
     margin: 1em 0;
 }
 
+.required-warning {
+    color: var(--secondary-color);
+    font-size: 1em;
+    font-style: italic;
+}
+
 /* Asteriks voor elke vraag die required is */
 label:has(input:required) span::after,
 fieldset:not(.step):has(input[type="radio"][required]) > legend::after,
-fieldset:not(.step)>input[type="date"][required] legend::after {
+fieldset:has(>input[type="date"][required]) legend::after,
+.required-warning::before {
   content: "*";
   color: red;
   font-weight: bold;
-
 }
+
 
 .step.inactive {
     display: none;
@@ -210,7 +215,7 @@ fieldset:not(.step)>input[type="date"][required] legend::after {
 
 .step.active {
     display: block;
-    height: 60vh;
+    height: 65vh;
     overflow-y: scroll;
 
 }
