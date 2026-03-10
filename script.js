@@ -12,7 +12,6 @@ if (prevBtn) {
 }
 const numberInput = document.getElementById('number-of-beneficiaries-not-charges');
 const template = document.getElementById('beneficiary-template');
-const beneficiariesContainer = document.getElementById('beneficiaries-container');
 
 const requiredInputs = document.querySelectorAll('.required');
 requiredInputs.forEach(input => {
@@ -64,7 +63,7 @@ numberInput?.addEventListener('input', (event) => {
     console.log('Number of beneficiaries:', event.target.value);
 });
 
-//Voor het duplicaten van de verkrijgers heb ik ChatGPT gebruikt, eerst had ik een andere set-up die niet werkte.
+//Voor het duplicaten van de verkrijgers heb ik ChatGPT gebruikt, eerst had ik een andere setup die niet werkte.
 //Dylan gaf aan om een template te gebruiken, nadat ik het nog een keer aan AI vroeg met die extra info werkte het vrijwel meteen
 
 // Generate beneficiary steps dynamically
@@ -120,10 +119,10 @@ nextBtn?.addEventListener('click', () => {
     }
 
     // Check validity per step
-    if (firstInvalid) {
+    /* if (firstInvalid) {
         firstInvalid.reportValidity();
         return; // Prevent going to next step
-    }
+    } */
 
     // Generate beneficiaries dynamically if on step6
     if (currentStepEl.id === 'step6') {
@@ -198,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // Voor screenreaders moest er een display none
-document.addEventListener("change", function(e) {
+document.addEventListener("change", function (e) {
     const radio = e.target;
 
     if (!radio.matches('input[type="radio"]')) return;

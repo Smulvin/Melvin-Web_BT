@@ -257,3 +257,22 @@ Ik ben eens met veel punten uit deze video. Ik ben altijd van mening dat functio
 Mats was vandaag bezig geweest met onder andere validatie. Zo had hij verschillende secties voor of je uit Nederland of uit het buitenland komt. Dit vond ik een interessante aanpak. Hij had hier ook al over nagedacht van hoe het zou zijn als de javascript uit staat. Hij had me even laten zien hoe hij het had gedaan dat je limieten kon zetten om een date input. Hier kan ik misschien later nor kijken voor mijn eigen formulier.
 
 ### Dag 6: Dinsdag 10 - 3 - 2026
+Beginnen met Weekly Geek bespreken
+Verder aan styling
+html schoonmaken door alle for="" en sommige ids weg te halen en geneste inputs duidelijker door labeltekst niet op zelfde regel
+Alle data inputs veranderd naar een input="date"
+asteriks toevoegen aan required fields door ::after in CSS
+
+#### Datums veranderen
+Oude code
+```
+<label for="day-of-passing">
+    Dag<input required type="number" name="day-of-passing" id="day-of-passing" min="1" max="31" pattern="^\d+$">
+</label>
+<label for="month-of-passing">
+    Maand<input required type="number" name="month-of-passing" id="month-of-passing" min="1" max="12" pattern="^\d+$">
+</label>
+<label for="year-of-passing">
+    Jaar<input required type="number" name="year-of-passing" id="year-of-passing" min="1900" max="2026" pattern="^\d+$">
+</label> 
+```
