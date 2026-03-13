@@ -216,7 +216,7 @@ fieldset:has(>input[type="date"][required]) legend::after,
 .step.active {
     display: block;
     height: 65vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 
 }
 
