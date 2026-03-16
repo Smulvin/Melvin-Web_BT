@@ -388,4 +388,5 @@ function isRadioGroupValid(inputs) {
 }
 ```
 
-#### Checkout met
+#### Checkout met Lynn
+Heb tijdens de checkout laten zien waar ik aan had gewerkt en had verteld hoe ik vast liep met de radio buttons, maar zij wist ook niet hoe ik het op zou moeten lossen. Zelf had ze ook veel progressie gemaakt qua styling en beetje validatie.

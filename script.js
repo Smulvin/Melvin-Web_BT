@@ -129,10 +129,10 @@ nextBtn?.addEventListener('click', () => {
     }
 
     // Check validity per step
-    /* if (firstInvalid) {
+    if (firstInvalid) {
         firstInvalid.reportValidity();
         return; // Zorgt voor dat je niet naar volgende stap kan
-    } */
+    }
 
     // Generate beneficiaries dynamically if on step6
     if (currentStepEl.id === 'step6') {

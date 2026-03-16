@@ -222,7 +222,6 @@ fieldset:not(.step):not(:has(label)):has(input[required]) legend::after,
   font-weight: bold;
 }
 
-
 .step.inactive {
     display: none;
 }
