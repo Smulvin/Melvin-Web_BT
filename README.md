@@ -297,8 +297,95 @@ Tijdens het voortgangsgesprek kwamen meerdere dingen naar vorgen waar ik nog aan
 Waar ik zelf nog achter kwam is dat de toegevoegde verkrijgers nog blijven staan ook als je dat daarna veranderd bij de stap daarvoor. Dus daar kan ik nog even naar kijken. Voor de rest wilde ik ook nog kijken naar accessibility voor screenreaders. Namelijk dat het p element voor welke velden required zijn moet niet steeds worden voorgelezen, maar ook dat je op het moment niet met tab en enter door het hele element kan.
 
 ## Week 4
-Meer witruimtes toegevoegd
-Consistente styling van input velden
-consistent met weghalen en laten zien
-Eindscherm en introductie scherm toegevoegd
-Gekeken naar valideren van 
+
+### Dag 7: 16 - 3 - 2026
+
+Ik ging vandaag vooral veel bezig met het verwerken van feedback van het voortgangsgesprek. Beginnend met het fixen van de witruimte. Ik moest even een beetje mijn HTML aanpassen, maar kreeg het wel voor snel netjes om wat meer witruimte te creëeren. Daarna ging ik oo meteen mijn input velden wat meer consistent maken. Zo had ik 4 custom properties aangemaakt voor verschillende lengtes. Zo kon ik makkelijk in mijn HTML een class geven aan bepaalde inputs zodat ze meteen de juiste lengte kregen. Ik moet dit alleen nog wel responsive maken morgen. Daarna heb ik een eindscherm en introductie scherm toegevoegd. Het introductie scherm kwam voornamelijk uit het voortgangsgesprek, maar het eindscherm kwam deels ook uit de Weekly Nerd. Het beginscherm was makkelijker toe te voegen dan het eindscherm, maar beide kreeg ik werkend. Daarna ben ik een groot deel van de dag bezig geweest om radio buttons te valideren. Ik weet niet precies waarom, maar het is heel lastig om ze op dezelfde manier te valideren als andere inputs. Ik kan wel checken of ze gecheckt zijn, maar dan geeft hij geen foutmelding ervoor. Dus ik moet dan of een custom foutmelding aanmaken puur voor radio buttons, of het laten zoals het nu is en dat ze helemaal niet required zijn (ook al hebben ze het required attribute). Ik heb hier ook AI voor gevraagd, maar uiteindelijk niet gebruikt. Als laatste vandaag ben ik nog bezig geweest met paginatie. Zodat de gebruiker kan zien hoe lang het formulier nog duurt. Dit was een klein ding en snel te regelen, maar wel noodzakelijk.
+
+<img src="Assets/README_imgs/Dag7_Voortgang.png">
+
+#### Ai Code
+Deze code had ik aangevraagd, maar uiteindelijk niet gebruikt.
+Prompt: I got these 2 radio buttons, how would I validate them per step in my code to check if they have been checked in my javascript code? I have already tried to just check if one of them has been checked. That worked. But I would like for them to also give an error message just like every other required error message
+```
+nextBtn?.addEventListener('click', () => {
+    const currentStepEl = steps[currentStep];
+
+    // Only visible & enabled inputs
+    const inputs = Array.from(currentStepEl.querySelectorAll('input, select, textarea'))
+        .filter(input => !input.disabled && input.offsetParent !== null);
+
+    // Validate radio groups first
+    const firstInvalidRadio = isRadioGroupValid(inputs);
+    if (firstInvalidRadio) {
+        firstInvalidRadio.reportValidity(); // Shows the required error
+        return;
+    }
+
+    // Then validate normal inputs
+    const firstInvalidInput = inputs.find(input => input.type !== 'radio' && !input.checkValidity());
+    if (firstInvalidInput) {
+        firstInvalidInput.reportValidity();
+        return;
+    }
+
+    // Generate beneficiaries dynamically if on step6
+    if (currentStepEl.id === 'step6') {
+        const num = parseInt(numberInput.value, 10);
+        if (!isNaN(num) && num > 0) {
+            generateBeneficiaries(num);
+        }
+    }
+
+    // Move to next step (skip skipped steps)
+    let nextIndex = currentStep + 1;
+    while (nextIndex < steps.length && steps[nextIndex].classList.contains("step-skipped")) {
+        nextIndex++;
+    }
+
+    if (nextIndex < steps.length) {
+        currentStep = nextIndex;
+        showStep(currentStep);
+    } else {
+        // Show final screen
+        const finalScreen = document.querySelector('.final-screen-step');
+        steps.forEach(step => {
+            step.classList.add('inactive');
+            step.classList.remove('active');
+        });
+        if (finalScreen) {
+            finalScreen.classList.remove('inactive');
+            finalScreen.classList.add('active');
+        }
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (prevBtn) prevBtn.style.display = 'none';
+    }
+});
+
+function isRadioGroupValid(inputs) {
+    const radioGroups = {};
+    
+    // Group radio buttons by name
+    inputs.forEach(input => {
+        if (input.type === 'radio') {
+            if (!radioGroups[input.name]) {
+                radioGroups[input.name] = [];
+            }
+            radioGroups[input.name].push(input);
+        }
+    });
+
+    // Check each group
+    for (const groupName in radioGroups) {
+        const group = radioGroups[groupName];
+        if (!group.some(r => r.checked)) {
+            // None checked → invalid
+            return group[0]; // Return first radio in the group to focus on
+        }
+    }
+
+    return null; // All radio groups valid
+}
+```
+
+#### Checkout met
