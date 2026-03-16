@@ -1,6 +1,6 @@
-let steps = Array.from(document.querySelectorAll('.step'))
-    //Fallback steps weghalen wanneer javascript correct laad
-    .filter(step => !step.classList.contains('fall-back-step'));
+let steps = Array.from(
+    document.querySelectorAll('.step:not(.fall-back-step):not(.final-screen-step)')
+);
 const nextBtn = document.getElementById('next-step-button');
 if (nextBtn) {
     nextBtn.type = "button";
@@ -20,6 +20,10 @@ requiredInputs.forEach(input => {
 
 // Steps volledig inactief maken
 document.querySelectorAll('.fall-back-step').forEach(step => {
+    step.classList.add('inactive');
+});
+
+document.querySelectorAll('.final-screen-step').forEach(step => {
     step.classList.add('inactive');
 });
 
@@ -55,6 +59,12 @@ function showStep(index) {
             nextBtn.type = 'button';
             nextBtn.textContent = 'Volgende';
         }
+    }
+
+    // Update paginator text
+    const paginator = document.getElementById('paginator');
+    if (paginator) {
+        paginator.textContent = `Pagina ${index + 1}/${steps.length}`;
     }
 }
 
@@ -114,14 +124,14 @@ nextBtn?.addEventListener('click', () => {
     for (const input of inputs) {
         if (!input.checkValidity()) {
             firstInvalid = input;
-            break; // stop at the first invalid input
+            break; //Stop bij de eerste invalid
         }
     }
 
     // Check validity per step
     /* if (firstInvalid) {
         firstInvalid.reportValidity();
-        return; // Prevent going to next step
+        return; // Zorgt voor dat je niet naar volgende stap kan
     } */
 
     // Generate beneficiaries dynamically if on step6
@@ -141,6 +151,22 @@ nextBtn?.addEventListener('click', () => {
     if (nextIndex < steps.length) {
         currentStep = nextIndex;
         showStep(currentStep);
+    } else {
+        // We reached the end → show final screen
+        const finalScreen = document.querySelector('.final-screen-step');
+
+        steps.forEach(step => {
+            step.classList.add('inactive');
+            step.classList.remove('active');
+        });
+
+        if (finalScreen) {
+            finalScreen.classList.remove('inactive');
+            finalScreen.classList.add('active');
+        }
+
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (prevBtn) prevBtn.style.display = 'none';
     }
 });
 
@@ -239,3 +265,4 @@ document.addEventListener("change", function (e) {
         inputs.forEach(input => input.disabled = false);
     }
 });
+

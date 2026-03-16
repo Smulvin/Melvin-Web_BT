@@ -23,7 +23,12 @@
 
     --size-text-step: 1.4em;
     --size-text-legend: 1.2em;
-    --size-text-label: 1.0em;
+    --size-text-label: 1em;
+
+    --input-width-small: 8em;
+    --input-width-medium: 16em;
+    --input-width-big: 20em;
+    --input-width-largge: 100%;
 }
 
 body {
@@ -51,10 +56,6 @@ h1 {
     width: 100%;
 }
 
-h1{
-    content: "paragraaf 2";
-}
-
 form {
     width: 95%;
     max-width: 800px;
@@ -62,30 +63,32 @@ form {
     background: var(--white);
     padding: 2em;
     border-radius: 2em;
+    position: relative;
 
     >fieldset>legend {
-        font-size: var(--size-text-step);
         font-weight: bold;
     }
+
+    p {
+        margin: 1em 0;
+    };
 }
 
 #form-background {
     width: 100%;
     background: var(--primary-color);
-    padding: 2em 0em 2em 0em;
+    padding: 1.5em 0em 1.5em 0em;
 
-}
-
-form>fieldset {
-    display: flex;
-    flex-direction: column;
-    margin: 1em 0;
-    border: none;
 }
 
 fieldset {
+    display: flex;
+    flex-direction: column;
     border:none;
-    margin: 0.5em 0;
+
+    fieldset {
+        margin-top: 1.2em;
+    }
 }
 
 legend {
@@ -95,10 +98,24 @@ legend {
 
 label {
     font-size: var(--size-text-label);
+    display: flex;
+    flex-direction: column;
+}
 
-    input {
-        margin-left: 1em;
-    }
+.small-input {
+    width: var(--input-width-small);
+}
+
+.medium-input {
+    width: var(--input-width-medium);
+}
+
+.big-input {
+    width: var(--input-width-big);
+}
+
+.large-input {
+    width: var(--input-width-largge);
 }
 
 input:user-invalid {
@@ -111,6 +128,10 @@ input:user-valid {
     border-radius: 4px;
 }
 
+.radio-button.radio-invalid {
+    border: 2px solid var(--warning-color);
+}
+
 .input-name {
     display: flex;
     flex-direction: row;
@@ -118,25 +139,21 @@ input:user-valid {
     flex-wrap: wrap;
     width: 100%;
 
-    input {
-        max-width: 5em;
-    }
 
-    label:last-of-type input {
-        max-width: 10em;
-    }
 }
 
 .radio-flex {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
 
     label {
         text-align: center;
         max-width: 20%;
     }
 }
-/* Hulp van AI: prompt: how do I style a radio button so that the label is inside of the button? */
 
+/* Hulp van AI: prompt: how do I style a radio button so that the label is inside of the button? */
 .radio-button {
     display: inline-block;
     padding: 0.6rem 1rem;
@@ -160,10 +177,6 @@ input:user-valid {
 
 input[type="text"], input[type="number"], input[type="date"] {
     padding: 0.5em;
-}
-
-input[type="date"] {
-    width: 100%;
 }
 
 /* Selector geleerd van AI: prompt: How would I style the button of this file input. Give me the selector */ 
@@ -202,8 +215,9 @@ hr {
 label:has(input:required) span::after,
 fieldset:not(.step):has(input[type="radio"][required]) > legend::after,
 fieldset:has(>input[type="date"][required]) legend::after,
+fieldset:not(.step):not(:has(label)):has(input[required]) legend::after,
 .required-warning::before {
-  content: "*";
+  content: " *";
   color: red;
   font-weight: bold;
 }
@@ -218,6 +232,17 @@ fieldset:has(>input[type="date"][required]) legend::after,
     height: 65vh;
     overflow-y: auto;
 
+}
+
+#step-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#paginator {
+    color: var(--secondary-color);
 }
 
 #step-buttons {
@@ -254,7 +279,8 @@ fieldset:has(>input[type="date"][required]) legend::after,
 .marriage-recorded-dependent-fields,
 .children-dependent-fields,
 .deceased-child-dependent-fields,
-.will-dependent-fields {
+.will-dependent-fields,
+.show-number-of-beneficiaries {
     overflow: hidden;
     max-height: 500px;
     opacity: 1;
@@ -266,23 +292,12 @@ fieldset:has(>input[type="date"][required]) legend::after,
 .step:has(input[name="marriage-recorded"][value="no"]:checked) .marriage-recorded-dependent-fields,
 .step:has(input[name="had-children"][value="no"]:checked) .children-dependent-fields,
 .step:has(input[name="child-deceased"][value="no"]:checked) .deceased-child-dependent-fields,
-.step:has(input[name="had-will"][value="no"]:checked) .will-dependent-fields {
+.step:has(input[name="had-will"][value="no"]:checked) .will-dependent-fields,
+.step:has(input[name="are-beneficiaries"][value="no"]:checked) .show-number-of-beneficiaries {
     max-height: 0;
     opacity: 0;
     transition: max-height 0.5s ease, opacity 0.5s ease;
 } 
-
-.show-number-of-beneficiaries {
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;  
-}
-
-.step:has(input[name="are-beneficiaries"][value="yes"]:checked) .show-number-of-beneficiaries {
-    max-height: 500px;
-    opacity: 1;
-    transition: max-height 0.5s ease, opacity 0.5s ease;  
-}
 
 .previousBtn {
     display: none;

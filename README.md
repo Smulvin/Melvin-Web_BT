@@ -293,11 +293,12 @@ Deze week heb ik wat meer focus gelegd op styling. Maar dat was niet het enige. 
 
 
 #### Voortgangsgesprek
-Witruimtes
-Meer consistente styling
-Iets meer kiijken naar huisstijl van NS
-Verkrijgers blijven staan als vorige input weer op Nee staat
-Consistent met weghalen of laten zien
-
 Tijdens het voortgangsgesprek kwamen meerdere dingen naar vorgen waar ik nog aan zou kunnen werken. De meeste dingen kwamen neer op de styling. Namelijk dat het nog niet helemeaal consistent is qua de verschillende invoervelden. Bij sommige plekken mag de witruimte wat meer zodat het duidelijker is wat wat bij hoort. Ik kan nog een beetje kijken naar de huisstijl van de NS om het er iets meer op te laten lijken. Ook was het bij mij natuurlijk een geval wat dat ik dingen weg haalde uit het formulier in plaats van dat ik dingen liet zien. Het probleem voor nu was dat ik dit niet consistent deed. Bij het invoerveld van de hoeveelheid verkrijgers komt het er namelijk bij in plaats dat het weg gaat.<br>
 Waar ik zelf nog achter kwam is dat de toegevoegde verkrijgers nog blijven staan ook als je dat daarna veranderd bij de stap daarvoor. Dus daar kan ik nog even naar kijken. Voor de rest wilde ik ook nog kijken naar accessibility voor screenreaders. Namelijk dat het p element voor welke velden required zijn moet niet steeds worden voorgelezen, maar ook dat je op het moment niet met tab en enter door het hele element kan.
+
+## Week 4
+Meer witruimtes toegevoegd
+Consistente styling van input velden
+consistent met weghalen en laten zien
+Eindscherm en introductie scherm toegevoegd
+Gekeken naar valideren van 

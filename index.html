@@ -7,13 +7,21 @@
     <link rel="stylesheet" href="style.css">
     <title>Erfbelasting - MelvinVermast</title>
 </head>
-
 <body>
     <p id="school-warning">Dit is een schoolproject!</p>
 
     <h1>Erfbelasting 2026</h1>
     <div id="form-background">
         <form action="POST">
+            <fieldset id="step0" class="step">
+                <legend>Introductie</legend>
+                <hr>
+                <p>Dit is een schoolproject voor het vak Browser Technologies.</p>
+                <p>Voor de opdracht kan je een gedeelte van het erfbelastingsformulier invullen op een digitale manier</p>
+                <p>Niet elke stap van het formulier is 100% uitgewerkt, dus er zullen delen ontbreken.</p>
+            </fieldset>
+
+
             <!-- Pagina 1 - a -->
             <fieldset id="step1" class="step">
                 <legend>Gegevens van de overledene</legend>
@@ -21,39 +29,36 @@
                 <p class="required-warning"> : Deze velden zijn verplicht</p>
                 <!-- De naam van de overledene bestaat uit drie delen: voorletter(s), tussenvoegsel(s) en achternaam. -->
                 <fieldset class="input-name">
-                    <legend>Naam</legend>
+                    <legend>Naam overledende</legend>
                     <label>
                         <span>Initialen</span>
-                        <input required type="text" name="initials" pattern="[A-Za-z]+">
+                        <input required type="text" name="initials" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         Tussenvoegsel
-                        <input type="text" name="infix" pattern="[A-Za-z]+">
+                        <input type="text" name="infix" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         <span>Achternaam</span>
-                        <input required type="text" name="lastname" pattern="[A-Za-z]+">
+                        <input required type="text" name="lastname" pattern="[A-Za-z]+" class="medium-input">
                     </label>
                 </fieldset>
 
                 <!-- Het BSN van de overledene bestaat uit 9 cijfers. -->
                 <fieldset>
-                    <legend>BSN</legend>
+                    <legend>BSN overledene</legend>
                     <!--
                 Geleerd over wat patterns zijn
                 Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attr-pattern
                 AI het pattern laten genereren met prompt: Give me an html input pattern for a type=text so that only 9 numbers can get added in that text field
                 -->
-                    <label>
-                        <span>BSN</span>
-                        <input required type="text" name="bsn-deceased" pattern="^\d{8,9}$" minlength="8" maxlength="9">
-                    </label>
+                    <input required type="text" name="bsn-deceased" pattern="^\d{8,9}$" minlength="8" maxlength="9" class="medium-input">
                 </fieldset>
 
                 <!-- De overlijdensdatum van de overledene mag niet in de toekomst liggen. -->
                 <fieldset>
                     <legend>Overlijdensdatum</legend>
-                    <input required type="date">
+                    <input required type="date" class="medium-input">
                 </fieldset>
             </fieldset>
 
@@ -114,7 +119,7 @@
 
                         <fieldset>
                             <legend>Datum huwelijkse of partnerschapsvoorwaarden</legend>
-                            <input class="required" type="date">
+                            <input class="required medium-input" type="date">
                         </fieldset>
                     </div>
                 </div>
@@ -197,41 +202,35 @@
                         <legend>Testament gegevens</legend>
                         <fieldset>
                             <legend>Protocolnummer notaris</legend>
-                            <label>
-                                <span>Protocolnummer notaris</span>
-                                <input class="required" type="text" name="protocolnumber-notary" min="4" maxlength="6" pattern="^\d+$">
-                            </label>
+                            <input class="required medium-input" type="text" name="protocolnumber-notary" min="4" maxlength="6" pattern="^\d+$">
                         </fieldset>
 
                         <fieldset class="input-name">
-                            <legend>Naam</legend>
+                            <legend>Naam notaris</legend>
                             <label>
                                 <span>Initialen</span>
-                                <input class="required" type="text" name="will-initials" pattern="[A-Za-z]+">
+                                <input class="required small-input" type="text" name="will-initials" pattern="[A-Za-z]+">
                             </label>
 
                             <label>
                                 Tussenvoegsel
-                                <input type="text" name="will-infix" pattern="[A-Za-z]+">
+                                <input type="text" name="will-infix" pattern="[A-Za-z]+" class="small-input">
                             </label>
 
                             <label>
                                 <span>Achternaam</span>
-                                <input class="required" type="text" name="will-lastname" pattern="[A-Za-z]+">
+                                <input class="required medium-input" type="text" name="will-lastname" pattern="[A-Za-z]+">
                             </label>
                         </fieldset>
 
                         <fieldset>
-                            <legend>Vestigingsplaats</legend>
-                            <label>
-                                <span>Vestigingsplaats notaris</span>
-                                <input class="required" type="text" name="place-of-business-notary">
-                            </label>
+                            <legend>Vestigingsplaats notaris</legend>
+                            <input class="required big-input" type="text" name="place-of-business-notary">
                         </fieldset>
 
                         <fieldset>
                             <legend>Datum van het testament of van de laatste wijziging</legend>
-                            <input class="required" type="date">
+                            <input class="required medium-input" type="date">
                         </fieldset>
                     </fieldset>
                 </div>
@@ -277,7 +276,7 @@
 
                     <label>
                         <span>Hoeveelheid verkrijgers</span>
-                        <input required type="number" name="number-of-beneficiaries" min="1">
+                        <input required class="small-input" type="number" name="number-of-beneficiaries" min="1">
                     </label>
                 </fieldset>
             </fieldset>
@@ -303,7 +302,7 @@
                     <div class="show-number-of-beneficiaries">
                         <label>
                             <span>Hoeveelheid verkrijgers</span>
-                            <input required disabled type="number" id="number-of-beneficiaries-not-charges" name="number-of-beneficiaries-not-charges" min="1" max="1000">
+                            <input required disabled type="number" id="number-of-beneficiaries-not-charges" name="number-of-beneficiaries-not-charges" min="1" max="1000" class="small-input">
                         </label>
                     </div>
                 </fieldset>
@@ -316,25 +315,22 @@
 
                     <fieldset>
                         <legend>BSN Verkrijger</legend>
-                        <label>
-                            <span>BSN</span>
-                            <input required type="text" name="bsn-beneficiary" min="9" max="9" pattern="^\d+$">
-                        </label>
+                        <input required class="medium-input" type="text" name="bsn-beneficiary" min="9" max="9" pattern="^\d+$">
                     </fieldset>
 
                     <fieldset class="input-name">
                         <legend>Naam</legend>
                         <label>
                             <span>Initialen</span>
-                            <input required type="text" name="beneficiary-initials" pattern="[A-Za-z]+">
+                            <input required type="text" name="beneficiary-initials" pattern="[A-Za-z]+" class="small-input">
                         </label>
                         <label>
                             <span>Tussenvoegsel</span>
-                            <input type="text" name="beneficiary-infix" pattern="[A-Za-z]+">
+                            <input type="text" name="beneficiary-infix" pattern="[A-Za-z]+" class="small-input">
                         </label>
                         <label>
                             <span>Achternaam</span>
-                            <input required type="text" name="beneficiary-lastname" pattern="[A-Za-z]+">
+                            <input required type="text" name="beneficiary-lastname" pattern="[A-Za-z]+" class="medium-input">
                         </label>
                     </fieldset>
                     <fieldset>
@@ -374,25 +370,22 @@
 
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
-                    <label>
-                        BSN
-                        <input type="text" name="bsn-beneficiary-1" pattern="^\d+$" min="9" max="9">
-                    </label>
+                    <input  class="medium-input" type="text" name="bsn-beneficiary-1" pattern="^\d+$" min="9" max="9">
                 </fieldset>
 
                 <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
                         Initialen
-                        <input type="text" name="beneficiary-initials-1" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-initials-1" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         Tussenvoegsel
-                        <input type="text" name="beneficiary-infix-1" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-infix-1" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         Achternaam
-                        <input type="text" name="beneficiary-lastname-1" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-lastname-1" pattern="[A-Za-z]+" class="medium-input">
                     </label>
                 </fieldset>
                 <fieldset>
@@ -426,10 +419,7 @@
 
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
-                    <label>
-                        BSN
-                        <input type="text" name="bsn-beneficiary-2" pattern="^\d+$" min="9" max="9">
-                    </label>
+                    <input class="medium-input" type="text" name="bsn-beneficiary-2" pattern="^\d+$" min="9" max="9">
                 </fieldset>
 
                 <fieldset class="input-name">
@@ -444,7 +434,7 @@
                     </label>
                     <label>
                         Achternaam
-                        <input type="text" name="beneficiary-lastname-2" pattern="[A-Za-z]+">
+                        <input class="medium-input" type="text" name="beneficiary-lastname-2" pattern="[A-Za-z]+">
                     </label>
                 </fieldset>
                 <fieldset>
@@ -478,25 +468,22 @@
 
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
-                    <label>
-                        BSN
-                        <input type="text" name="bsn-beneficiary-3" pattern="^\d+$" min="9" max="9">
-                    </label>
+                    <input class="medium-input" type="text" name="bsn-beneficiary-3" pattern="^\d+$" min="9" max="9">
                 </fieldset>
 
                 <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
                         Initialen
-                        <input type="text" name="beneficiary-initials-3" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-initials-3" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         Tussenvoegsel
-                        <input type="text" name="beneficiary-infix-3" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-infix-3" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         Achternaam
-                        <input type="text" name="beneficiary-lastname-3" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-lastname-3" pattern="[A-Za-z]+" class="medium-input">
                     </label>
                 </fieldset>
                 <fieldset>
@@ -530,25 +517,22 @@
 
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
-                    <label>
-                        BSN
-                        <input type="text" name="bsn-beneficiary-4" pattern="^\d+$" min="9" max="9">
-                    </label>
+                    <input class="medium-input" type="text" name="bsn-beneficiary-4" pattern="^\d+$" min="9" max="9">
                 </fieldset>
 
                 <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
                         Initialen
-                        <input type="text" name="beneficiary-initials-4" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-initials-4" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         Tussenvoegsel
-                        <input type="text" name="beneficiary-infix-4" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-infix-4" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         Achternaam
-                        <input type="text" name="beneficiary-lastname-4" pattern="[A-Za-z]+">
+                        <input type="text" name="beneficiary-lastname-4" pattern="[A-Za-z]+" class="medium-input">
                     </label>
                 </fieldset>
                 <fieldset>
@@ -609,59 +593,48 @@
 
                 <fieldset>
                     <legend>BSN Executeur of gemachtigde</legend>
-                    <label>
-                        <span>BSN</span>
-                        <input class="required" type="text" name="executioner-bsn" pattern="^\d+$" min="9" max="9">
-                    </label>
+                    <input class="required medium-input" type="text" name="executioner-bsn" pattern="^\d+$" min="9" max="9">
                 </fieldset>
                 <fieldset>
-                    <legend>Protocol nummer</legend>
+                    <legend>Protocolnummer</legend>
                     <label>
                         <span>Protocolnummer (als deexecuteur ook notaris is)</span>
-                        <input class="required" type="text" name="executioner-protocol-number" pattern="^\d+$" min="4" max="6">
+                        <input class="required medium-input" type="text" name="executioner-protocol-number" pattern="^\d+$" min="4" max="6">
                     </label>
                 </fieldset>
                 <fieldset>
-                    <legend>
-                        Beconnummer van de adviseur
-                    </legend>
-                    <label>
-                        <span>Beconnummer van de adviseur</span>
-                        <input class="required" type="text" name="executioner-beconnumber" pattern="^\d+$" min="7" max="7">
-                    </label>
+                    <legend>Beconnummer van de adviseur</legend>
+                    <input class="required medium-input" type="text" name="executioner-beconnumber" pattern="^\d+$" min="7" max="7">
                 </fieldset>
                 <fieldset class="input-name">
                     <legend>Naam</legend>
                     <label>
                         <span>Initialen</span>
-                        <input class="required" type="text" name="executioner-initials" pattern="[A-Za-z]+">
+                        <input class="required small-input" type="text" name="executioner-initials" pattern="[A-Za-z]+">
                     </label>
                     <label>
                         <span>Tussenvoegsel</span>
-                        <input type="text" name="executioner-infix" pattern="[A-Za-z]+">
+                        <input type="text" name="executioner-infix" pattern="[A-Za-z]+" class="small-input">
                     </label>
                     <label>
                         <span>Achternaam</span>
-                        <input class="required" type="text" name="executioner-lastname" pattern="[A-Za-z]+">
+                        <input class="required medium-input" type="text" name="executioner-lastname" pattern="[A-Za-z]+">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Naam instelling</legend>
                     <label>
                         <span>Naam instelling (bijvoorbeeldeen notariskantoor)</span>
-                        <input class="required" type="text" name="executioner-institution-name">
+                        <input class="required large-input" type="text" name="executioner-institution-name">
                     </label>
                 </fieldset>
                 <fieldset>
                     <legend>Datum</legend>
-                    <input class="required" type="date">
+                    <input class="required medium-input" type="date">
                 </fieldset>
                 <fieldset>
                     <legend>Handtekening</legend>
-                    <label>
-                        <span>Uw handtekening</span>
-                        <input class="required" type="file" name="executioner-autograph" accept="image/*">
-                    </label>
+                    <input class="required large-input" type="file" name="executioner-autograph" accept="image/*">
                 </fieldset>
             </fieldset>
 
@@ -671,14 +644,20 @@
                 <p>Druk op "Verzenden" om uw aanvraag te versturen.</p>
             </fieldset>
 
-            <div id="step-buttons">
-                <button type="button" id="previous-step-button" class="previousBtn">Vorige</button>
-                <button type="submit" id="next-step-button">Verzenden</button>
+            <fieldset id="step10" class="step final-screen-step" >
+                <legend>Uw antwoorden zijn verzonden</legend>
+                <hr>
+                <p> Bedankt voor het invullen van de aanvraag, u zult zo snel mogelijk een e-mail krijgen ter bevestiging.</p>
+            </fieldset>
+            <div id="step-navigation">
+                <p id="paginator">Pagina x/x</p>
+                <div id="step-buttons">
+                    <button type="button" id="previous-step-button" class="previousBtn">Vorige</button>
+                    <button type="submit" id="next-step-button">Verzenden</button>
+                </div>
             </div>
         </form>
     </div>
-
-
 
     <script src="script.js"></script>
 </body>
