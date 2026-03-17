@@ -20,9 +20,9 @@
 
     --font-family: 'Segoe UI', Verdana, sans-serif;
 
-    --size-text-step: 1.4em;
-    --size-text-legend: 1.2em;
-    --size-text-label: 1em;
+    --size-text-step: clamp(1.2em, 1em + 0.5vw, 1.4em);
+    --size-text-legend: clamp(1.1em, 0.95em + 0.4vw, 1.2em);
+    --size-text-label: clamp(0.9em, 0.85em + 0.3vw, 1em);
 
     /* Custom groottes voor verschillende maten van inputs, voor consistente styling */
     --input-width-tiny: 5em;

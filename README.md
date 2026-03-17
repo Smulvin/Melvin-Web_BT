@@ -399,6 +399,9 @@ Checklist voor vandaag:
 - Code schoonmaken, comments plaatsen
 - Date validation
 
+Ik had een checklist gemaakt van dingen die ik vandaag af wilde maken. Aangezien dit in principe de laatste dag is dat ik aan dit vak ga werken. Ik was begonnen met een accessibility dingen. Zoals het zo maken dat het complete formulier bestuurd kan worden met het toestenbord. Hierbij kwam ik er opnieuw achter dat mijn radio buttons worden overgeslagen. Nadat ik het toetsenbord functionaliteiten compleet werkend had door bij elke stap opnieuw de gebruiker te laten focussen op de titel. Ging ik verder met de radio buttons. Na wat onderzoek en hulp van Vasilis kwam ik erachter dat het lag aan dat ik display: none had gebruikt om mijn radio buttons te stylen. Door hier een andere manier voor te bedenken werkte mijn radio buttons weer. Ik meost alleen nog even een :focus state maken zodat het duidelijker was dat ze daarmee bezig bent. Ik zat er ook aan te denken om een disabled state toe te voegen, maar ik dacht dat als je dat meteen ziet dat het dan onduidelijk zou zijn. Later kwam ik met het idee om het op de hover te doen op de onderdelen die weg zouden vallen bij bepaalde radio button keuzes. Dat was meteen al een stuk duidelijker. Voor de rest van de dag ben ik bezig geweest met mijn witruimte meer consistent maken en mijn code schoonmaken en comments te plaatsen.
+
+<img src="Assets/README_imgs/disabled_radios.png">
 
 #### Disablen van radio buttons
 Originele code voor disabled radio buttons
@@ -427,3 +430,6 @@ Alleen op hover een disabled state laten zien
     cursor: not-allowed;
 }
 ```
+
+#### Checkout met Teun
+Teun had vandaag een beetje aan validatie dingen gewerkt en een knop gemaakt als placeholder voor het verzenden van het formulier. Hij had nog niet validatie op date inputs gedaan dus ik had laten zien hoe ik dat had gedaan vandaag. Hij had ook nog een beetje aan CSS gewerkt, daar had hij ook nog plannen voor. Zelf heb ik laten zien waar ik vandaag aan had gewerkt en waar ik tegenaan liep met de radio buttons. Hij snapte meteen waarom het eerst niet werkte toen ik het had uitgelegd.
