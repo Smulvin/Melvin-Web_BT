@@ -9,15 +9,14 @@
     --primary-color-dark: #f0be19;
     --secondary-color: #003082;
     --tertiary-color: #e6e6e9;
+    --tertiary-color-dark: #ababab;
     --selected-color: #0063d3;
     --white: #fff;
     --black: #000;
     --text-color: #070721;
     --link-color: #0063d3;
     --warning-color: #e2103d;
-    --warning-color-light: #f24a6a;
     --good-color: #00a888;
-    --good-color-light: #33c4a8;
 
     --font-family: 'Segoe UI', Verdana, sans-serif;
 
@@ -25,6 +24,8 @@
     --size-text-legend: 1.2em;
     --size-text-label: 1em;
 
+    /* Custom groottes voor verschillende maten van inputs, voor consistente styling */
+    --input-width-tiny: 5em;
     --input-width-small: 8em;
     --input-width-medium: 16em;
     --input-width-big: 20em;
@@ -87,7 +88,14 @@ fieldset {
     border:none;
 
     fieldset {
-        margin-top: 1.2em;
+        margin-top: 1.5em;
+    }
+}
+
+/* Specifiek voor 1 situatie waar de margin lager moet zijn */
+.will-dependent-fields {
+    > fieldset >fieldset:first-of-type {
+        margin-top: .5em;
     }
 }
 
@@ -100,6 +108,10 @@ label {
     font-size: var(--size-text-label);
     display: flex;
     flex-direction: column;
+}
+
+.tiny-input {
+    width: var(--input-width-tiny);
 }
 
 .small-input {
@@ -128,18 +140,12 @@ input:user-valid {
     border-radius: 4px;
 }
 
-.radio-button.radio-invalid {
-    border: 2px solid var(--warning-color);
-}
-
 .input-name {
     display: flex;
     flex-direction: row;
     gap: 1em;
     flex-wrap: wrap;
     width: 100%;
-
-
 }
 
 .radio-flex {
@@ -165,18 +171,46 @@ input:user-valid {
 
     input {
         position: absolute;
-        display: none;
-        width: 100%;
+        /* Alleen ontzichtbaar, zodat error melding nog op scherm staat en niet met display: none. Vasilis had hiermee geholpen */
+        opacity:0;
+    }
+
+    /* hover voor normale radios */
+    &:has(input:not(:disabled):hover) {
+        border: 2px solid var(--selected-color);
+        color: var(--secondary-color);
+    }
+
+    /* Hover voor disabled radios */
+    &:has(input:disabled:hover) {
+        border: 2px solid var(--tertiary-color-dark);
+        color: var(--tertiary-color-dark);
+        background: var(--tertiary-color);
+        cursor: not-allowed;
+    }
+
+    &:has(input:focus){
+        border: 2px dashed var(--selected-color);
+        color: var(--secondary-color);
     }
 
     &:has(input:checked){
-        border: 2px solid var( --selected-color);
+        border: 2px solid var(--selected-color);
         color: var(--secondary-color);
-    }
+    }    
+}
+
+input:disabled:hover {
+    border: 2px solid var(--tertiary-color-dark);
+    color: var(--tertiary-color-dark);
+    background: var(--tertiary-color);
+    cursor: not-allowed;
+
 }
 
 input[type="text"], input[type="number"], input[type="date"] {
     padding: 0.5em;
+    margin: 0.5em 0.5em 0.5em 0;
 }
 
 /* Selector geleerd van AI: prompt: How would I style the button of this file input. Give me the selector */ 
@@ -224,13 +258,15 @@ fieldset:not(.step):not(:has(label)):has(input[required]) legend::after,
 
 .step.inactive {
     display: none;
+    
 }
 
 .step.active {
     display: block;
     height: 65vh;
     overflow-y: auto;
-
+    /* Extra ruimte voor als er gescrolled moet worden dat inputs niet tegen buttons aankomen */
+    padding-bottom: 1.5em;
 }
 
 #step-navigation {
@@ -271,6 +307,13 @@ fieldset:not(.step):not(:has(label)):has(input[required]) legend::after,
     box-shadow: inset 0 -3.125rem 0 var(--secondary-color);
 }
 
+.previousBtn {
+    display: none;
+}
+
+.previousBtn-active {
+    display: block;
+}
 
 
 /* Pattern 1 = Onderdelen niet meer laten zien als er bepaalde keuze gemaakt is */
@@ -286,7 +329,7 @@ fieldset:not(.step):not(:has(label)):has(input[required]) legend::after,
     transition: max-height 0.5s ease, opacity 0.5s ease;
 }
 
-/* Hide when "Nee" is selected */
+/* Weghalen wanneer "Nee" is geselecteerd*/
 .step:has(input[name="married"][value="no"]:checked) .married-dependent-fields,
 .step:has(input[name="marriage-recorded"][value="no"]:checked) .marriage-recorded-dependent-fields,
 .step:has(input[name="had-children"][value="no"]:checked) .children-dependent-fields,
@@ -296,13 +339,4 @@ fieldset:not(.step):not(:has(label)):has(input[required]) legend::after,
     max-height: 0;
     opacity: 0;
     transition: max-height 0.5s ease, opacity 0.5s ease;
-} 
-
-.previousBtn {
-    display: none;
 }
-
-.previousBtn-active {
-    display: block;
-}
-

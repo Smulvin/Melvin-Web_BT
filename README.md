@@ -389,4 +389,41 @@ function isRadioGroupValid(inputs) {
 ```
 
 #### Checkout met Lynn
-Heb tijdens de checkout laten zien waar ik aan had gewerkt en had verteld hoe ik vast liep met de radio buttons, maar zij wist ook niet hoe ik het op zou moeten lossen. Zelf had ze ook veel progressie gemaakt qua styling en beetje validatie.
+Heb tijdens de checkout laten zien waar ik aan had gewerkt en had verteld hoe ik vast liep met de radio buttons, maar zij wist ook niet hoe ik het op zou moeten lossen. We kwamen wel nog op het idee om px te gebruiken voor de witruimte tussen inputs zodat de afstand meer consistent is. Zelf had ze ook veel progressie gemaakt qua styling en beetje validatie.
+
+### Dag 8: 17 - 3 - 2025
+Checklist voor vandaag:
+- Radio buttons valideren, misschien met custom error of styling
+- Accessibility = toetsenbord besturen en de * melding steeds overslaan behalve eerste
+- Witruimte consistent maken
+- Code schoonmaken, comments plaatsen
+- Date validation
+
+
+#### Disablen van radio buttons
+Originele code voor disabled radio buttons
+```
+&:has(input:disabled){
+        border: 2px solid var(--tertiary-color-dark);
+        background: var(--tertiary-color);
+        color: var(--tertiary-color-dark);
+        transition: 0.2s;
+    }
+```
+
+Alleen op hover een disabled state laten zien
+```
+/* hover voor normale radios */
+&:has(input:not(:disabled):hover) {
+    border: 2px solid var(--selected-color);
+    color: var(--secondary-color);
+}
+
+/* Hover voor disabled radios */
+&:has(input:disabled:hover) {
+    border: 2px solid var(--tertiary-color-dark);
+    color: var(--tertiary-color-dark);
+    background: var(--tertiary-color);
+    cursor: not-allowed;
+}
+```

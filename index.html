@@ -13,23 +13,25 @@
     <h1>Erfbelasting 2026</h1>
     <div id="form-background">
         <form action="POST">
-            <fieldset id="step0" class="step">
+            <!-- Introductie pagina -->
+            <fieldset id="step0" class="step" tabindex="-1">
                 <legend>Introductie</legend>
                 <hr>
                 <p>Dit is een schoolproject voor het vak Browser Technologies.</p>
-                <p>Voor de opdracht kan je een gedeelte van het erfbelastingsformulier invullen op een digitale manier</p>
-                <p>Niet elke stap van het formulier is 100% uitgewerkt, dus er zullen delen ontbreken.</p>
+                <p>Voor de opdracht kan je een gedeelte van het erfbelastingsformulier invullen op een digitale manier.</p>
+                <p>Niet elke stap van het formulier is 100% uitgewerkt, dus er zullen delen van het originele formulier ontbreken.</p>
             </fieldset>
 
 
             <!-- Pagina 1 - a -->
-            <fieldset id="step1" class="step">
+            <fieldset id="step1" class="step" tabindex="-1">
                 <legend>Gegevens van de overledene</legend>
                 <hr>
                 <p class="required-warning"> : Deze velden zijn verplicht</p>
-                <!-- De naam van de overledene bestaat uit drie delen: voorletter(s), tussenvoegsel(s) en achternaam. -->
+                <!-- Elke naam in het document bestaat uit initialen, een tussenvoegsel (optioneel) en een achternaam, 
+                 dus een class was handig om ze allemaal hetzelfde te stylen -->
                 <fieldset class="input-name">
-                    <legend>Naam overledende</legend>
+                    <legend>Naam overledene</legend>
                     <label>
                         <span>Initialen</span>
                         <input required type="text" name="initials" pattern="[A-Za-z]+" class="small-input">
@@ -48,10 +50,10 @@
                 <fieldset>
                     <legend>BSN overledene</legend>
                     <!--
-                Geleerd over wat patterns zijn
-                Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attr-pattern
-                AI het pattern laten genereren met prompt: Give me an html input pattern for a type=text so that only 9 numbers can get added in that text field
-                -->
+                    Geleerd over wat patterns zijn
+                    Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attr-pattern
+                    AI het pattern laten genereren met prompt: Give me an html input pattern for a type=text so that only 9 numbers can get added in that text field
+                    -->
                     <input required type="text" name="bsn-deceased" pattern="^\d{8,9}$" minlength="8" maxlength="9" class="medium-input">
                 </fieldset>
 
@@ -63,10 +65,11 @@
             </fieldset>
 
             <!-- Pagina 1 - b-->
-            <fieldset id="step2" class="step">
-                <legend>Gegevens van de erfgenaam</legend>
+            <fieldset id="step2" class="step" tabindex="-1">
+                <legend >Gegevens van de erfgenaam</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <!-- Aria-hidden op elke warning behalve de eerste zodat screenreaders het maar 1 keer voorlezen -->
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <!--Was de erfgename getrouwd aan de overledene-->
                 <fieldset>
@@ -91,11 +94,11 @@
                             partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>
                         <div class="radio-flex">
                             <label class="radio-button">
-                                <input class="required" type="radio" name="marriage-recorded" value="yes">
+                                <input disabled class="required" type="radio" name="marriage-recorded" value="yes">
                                 Ja
                             </label>
                             <label class="radio-button">
-                                <input class="required" type="radio" name="marriage-recorded" value="no">
+                                <input disabled class="required" type="radio" name="marriage-recorded" value="no">
                                 Nee
                             </label>
                         </div>
@@ -107,29 +110,28 @@
                                 verrekenbeding?</legend>
                             <div class="radio-flex">
                                 <label class="radio-button">
-                                    <input class="required" type="radio" name="final-settlement" value="yes">
+                                    <input disabled class="required" type="radio" name="final-settlement" value="yes">
                                     Ja
                                 </label>
                                 <label class="radio-button">
-                                    <input class="required" type="radio" name="final-settlement" value="no">
+                                    <input disabled class="required" type="radio" name="final-settlement" value="no">
                                     Nee
                                 </label>
                             </div>
                         </fieldset>
-
                         <fieldset>
                             <legend>Datum huwelijkse of partnerschapsvoorwaarden</legend>
-                            <input class="required medium-input" type="date">
+                            <input disabled class="required medium-input" type="date">
                         </fieldset>
                     </div>
                 </div>
             </fieldset>
 
             <!-- Pagina 1 - c -->
-            <fieldset id="step3" class="step">
+            <fieldset id="step3" class="step" tabindex="-1">
                 <legend>Kinderen van overledene</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>Had de overledene kinderen?</legend>
@@ -144,44 +146,48 @@
                         </label>
                     </div>
                 </fieldset>
+
                 <div class="children-dependent-fields">
                     <fieldset>
                         <legend>Is 1 van deze kinderen eerder overleden dan de overledene voor wie u nu aangifte doet?
                         </legend>
                         <div class="radio-flex">
                             <label class="radio-button">
-                                <input class="required" type="radio" name="child-deceased" value="yes">
+                                <input disabled class="required" type="radio" name="child-deceased" value="yes">
                                 Ja
                             </label>
                             <label class="radio-button">
-                                <input class="required" type="radio" name="child-deceased" value="no">
+                                <input disabled class="required" type="radio" name="child-deceased" value="no">
                                 Nee
                             </label>
                         </div>
                     </fieldset>
+
                     <div class="deceased-child-dependent-fields">
                         <fieldset>
                             <legend>Had dit overleden kind zelf kinderen?</legend>
                             <div class="radio-flex">
                                 <label class="radio-button">
-                                    <input class="required" type="radio" name="deceased-child-had-children" value="yes">
+                                    <input disabled class="required" type="radio" name="deceased-child-had-children" value="yes">
                                     Ja
                                 </label>
                                 <label class="radio-button">
-                                    <input class="required" type="radio" name="deceased-child-had-children" value="no">
+                                    <input disabled class="required" type="radio" name="deceased-child-had-children" value="no">
                                     Nee
                                 </label>
                             </div>
                         </fieldset>
                     </div>
+
                 </div>
+                
             </fieldset>
 
             <!-- Pagina 1 - d -->
-            <fieldset id="step4" class="step">
+            <fieldset id="step4" class="step" tabindex="-1">
                 <legend>Laatste testament</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>Had de overledene een testament?</legend>
@@ -202,45 +208,45 @@
                         <legend>Testament gegevens</legend>
                         <fieldset>
                             <legend>Protocolnummer notaris</legend>
-                            <input class="required medium-input" type="text" name="protocolnumber-notary" min="4" maxlength="6" pattern="^\d+$">
+                            <input disabled class="required medium-input" type="text" name="protocolnumber-notary" min="4" maxlength="6" pattern="^\d+$">
                         </fieldset>
 
                         <fieldset class="input-name">
                             <legend>Naam notaris</legend>
                             <label>
                                 <span>Initialen</span>
-                                <input class="required small-input" type="text" name="will-initials" pattern="[A-Za-z]+">
+                                <input disabled class="required small-input" type="text" name="will-initials" pattern="[A-Za-z]+">
                             </label>
 
                             <label>
                                 Tussenvoegsel
-                                <input type="text" name="will-infix" pattern="[A-Za-z]+" class="small-input">
+                                <input disabled type="text" name="will-infix" pattern="[A-Za-z]+" class="small-input">
                             </label>
 
                             <label>
                                 <span>Achternaam</span>
-                                <input class="required medium-input" type="text" name="will-lastname" pattern="[A-Za-z]+">
+                                <input disabled class="required medium-input" type="text" name="will-lastname" pattern="[A-Za-z]+">
                             </label>
                         </fieldset>
 
                         <fieldset>
                             <legend>Vestigingsplaats notaris</legend>
-                            <input class="required big-input" type="text" name="place-of-business-notary">
+                            <input disabled class="required big-input" type="text" name="place-of-business-notary">
                         </fieldset>
 
                         <fieldset>
                             <legend>Datum van het testament of van de laatste wijziging</legend>
-                            <input class="required medium-input" type="date">
+                            <input disabled class="required medium-input" type="date">
                         </fieldset>
                     </fieldset>
                 </div>
             </fieldset>
 
             <!-- Pagina 3 - a -->
-            <fieldset id="step5" class="step">
+            <fieldset id="step5" class="step" tabindex="-1">
                 <legend>Voor wie doet u aangifte?</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>Heeft de overledene in het testament een executeur aangewezen om de erfenis af te handelen?</legend>
@@ -276,16 +282,16 @@
 
                     <label>
                         <span>Hoeveelheid verkrijgers</span>
-                        <input required class="small-input" type="number" name="number-of-beneficiaries" min="1">
+                        <input required class="tiny-input" type="number" name="number-of-beneficiaries" min="1">
                     </label>
                 </fieldset>
             </fieldset>
 
             <!-- Pagina 3 - b -->
-            <fieldset id="step6" class="step">
+            <fieldset id="step6" class="step" tabindex="-1">
                 <legend>Voor wie doet u geen aangifte?</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>Zijn er verkrijgers voor wie u geen aangifte doet?</legend>
@@ -302,16 +308,18 @@
                     <div class="show-number-of-beneficiaries">
                         <label>
                             <span>Hoeveelheid verkrijgers</span>
-                            <input required disabled type="number" id="number-of-beneficiaries-not-charges" name="number-of-beneficiaries-not-charges" min="1" max="1000" class="small-input">
+                            <input disabled required type="number" id="number-of-beneficiaries-not-charges" name="number-of-beneficiaries-not-charges" min="1" max="1000" class="tiny-input">
                         </label>
                     </div>
                 </fieldset>
             </fieldset>
+
+            <!-- Template die gebruikt wordt om te dupliceren via de javascript -->
             <template id="beneficiary-template">
-                <fieldset class="step beneficiary-step">
+                <fieldset class="step beneficiary-step" tabindex="-1">
                     <legend>Verkrijger</legend>
                     <hr>
-                    <p class="required-warning"> : Deze velden zijn verplicht</p>
+                    <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                     <fieldset>
                         <legend>BSN Verkrijger</legend>
@@ -363,10 +371,10 @@
             </template>
 
             <!-- Fallback voor als Javascript niet werkt -->
-            <fieldset class="step fall-back-step">
+            <fieldset class="step fall-back-step" tabindex="-1">
                 <legend>Verkrijger 1</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
@@ -412,10 +420,10 @@
                 </fieldset>
             </fieldset>
 
-            <fieldset class="step fall-back-step">
+            <fieldset class="step fall-back-step" tabindex="-1">
                 <legend>Verkrijger 2</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
@@ -461,10 +469,10 @@
                 </fieldset>
             </fieldset>
 
-            <fieldset class="step fall-back-step">
+            <fieldset class="step fall-back-step" tabindex="-1">
                 <legend>Verkrijger 3</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
@@ -510,10 +518,10 @@
                 </fieldset>
             </fieldset>
 
-            <fieldset class="step fall-back-step">
+            <fieldset class="step fall-back-step" tabindex="-1">
                 <legend>Verkrijger 4</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>BSN Verkrijger</legend>
@@ -560,15 +568,13 @@
             </fieldset>
 
             <!-- Pagina 3 - c -->
-            <fieldset id="step7" class="step">
+            <fieldset id="step7" class="step" tabindex="-1">
                 <legend>Erfbelasting opsturen</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>Naar wie wilt u dat wij de aanslag erfbelasting sturen?</legend>
-
-                
                     <label class="radio-button">
                         <input required type="radio" name="send-separate-assessment">
                         Stuur naar iedere verkrijger van (een deel van) de erfenis een eigen belastingaanslag.
@@ -586,10 +592,10 @@
             <!-- Pagina 3 - d wordt overslagen want die informatie wordt eerder ook al gegeven -->
 
             <!-- Pagina 3 - e -->
-            <fieldset id="step8" class="step">
+            <fieldset id="step8" class="step" tabindex="-1">
                 <legend>Gegevens executeur of gemachtigde</legend>
                 <hr>
-                <p class="required-warning"> : Deze velden zijn verplicht</p>
+                <p class="required-warning" aria-hidden="true"> : Deze velden zijn verplicht</p>
 
                 <fieldset>
                     <legend>BSN Executeur of gemachtigde</legend>
@@ -598,7 +604,7 @@
                 <fieldset>
                     <legend>Protocolnummer</legend>
                     <label>
-                        <span>Protocolnummer (als deexecuteur ook notaris is)</span>
+                        <span>Protocolnummer (als de executeur ook notaris is)</span>
                         <input class="required medium-input" type="text" name="executioner-protocol-number" pattern="^\d+$" min="4" max="6">
                     </label>
                 </fieldset>
@@ -638,17 +644,21 @@
                 </fieldset>
             </fieldset>
 
-            <fieldset class="step" id="step9">
+            <!-- Verzenden pagina -->
+            <fieldset class="step" id="step9" tabindex="-1">
                 <legend>Bedankt voor het invullen</legend>
                 <hr>
                 <p>Druk op "Verzenden" om uw aanvraag te versturen.</p>
             </fieldset>
 
-            <fieldset id="step10" class="step final-screen-step" >
+            <!-- Bevestigingspagina -->
+            <fieldset id="step10" class="step final-screen-step" tabindex="-1">
                 <legend>Uw antwoorden zijn verzonden</legend>
                 <hr>
                 <p> Bedankt voor het invullen van de aanvraag, u zult zo snel mogelijk een e-mail krijgen ter bevestiging.</p>
             </fieldset>
+
+            <!-- Navigatie onderaan elke step -->
             <div id="step-navigation">
                 <p id="paginator">Pagina x/x</p>
                 <div id="step-buttons">

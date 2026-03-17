@@ -2,6 +2,7 @@ let steps = Array.from(
     document.querySelectorAll('.step:not(.fall-back-step):not(.final-screen-step)')
 );
 const nextBtn = document.getElementById('next-step-button');
+// Button is standaard een Submit, zodat zonder javascript hij ook werkt. Wordt meteen button gemaakt in javascript
 if (nextBtn) {
     nextBtn.type = "button";
     nextBtn.textContent = "Volgende";
@@ -14,6 +15,7 @@ const numberInput = document.getElementById('number-of-beneficiaries-not-charges
 const template = document.getElementById('beneficiary-template');
 
 const requiredInputs = document.querySelectorAll('.required');
+// elementen met de required attribute krijgen required via javascript, anders zijn ze verplicht zonder als javascript niet werkt
 requiredInputs.forEach(input => {
     input.setAttribute('required', '');
 });
@@ -61,17 +63,25 @@ function showStep(index) {
         }
     }
 
-    // Update paginator text
+    // Update paginator tekst
     const paginator = document.getElementById('paginator');
     if (paginator) {
         paginator.textContent = `Pagina ${index + 1}/${steps.length}`;
     }
-}
 
-// Listen for number input changes (optional)
-numberInput?.addEventListener('input', (event) => {
-    console.log('Number of beneficiaries:', event.target.value);
-});
+    // Accessibility voor toetsenbord controls
+    const stepEl = steps[index];
+    stepEl.setAttribute('tabindex', '-1');
+
+    const legend = stepEl.querySelector('legend');
+
+    if (legend) {
+        legend.setAttribute('tabindex', '-1');
+        legend.focus();
+    } else {
+        stepEl.focus();
+    }
+}
 
 //Voor het duplicaten van de verkrijgers heb ik ChatGPT gebruikt, eerst had ik een andere setup die niet werkte.
 //Dylan gaf aan om een template te gebruiken, nadat ik het nog een keer aan AI vroeg met die extra info werkte het vrijwel meteen
@@ -82,36 +92,35 @@ function generateBeneficiaries(number) {
     steps = steps.filter(step => !step.classList.contains('beneficiary-step'));
     document.querySelectorAll('.beneficiary-step').forEach(el => el.remove());
 
-    // Reference to step6, after which we insert beneficiaries
     const step6 = document.getElementById('step6');
 
     for (let i = 0; i < number; i++) {
         const clone = template.content.cloneNode(true);
         const fieldset = clone.querySelector('fieldset');
 
-        // Ensure it keeps 'step' and 'beneficiary-step' classes
+        // Elke toegevoegde stap de juiste classes geven
         fieldset.classList.add('step', 'beneficiary-step');
 
         // Update legend
         const legend = fieldset.querySelector('legend');
         if (legend) legend.textContent = `Verkrijger ${i + 1}`;
 
-        // Make unique IDs and names
+        // Unieke ids en namen geven
         fieldset.querySelectorAll('input, fieldset, legend, label').forEach(el => {
             if (el.id) el.id = `${el.id}-${i + 1}`;
             if (el.name) el.name = `${el.name}-${i + 1}`;
         });
 
-        // Insert **after step6** in the DOM
+        // Extra verkrijgers toeveogen na stap 6 in de DOM
         step6.after(fieldset);
 
-        // Insert **after step6 in steps array** so navigation works correctly
+        // In de array ook na stap 6 toeveogen zodat navigatie correct blijft werken
         const indexStep6 = steps.indexOf(step6);
         steps.splice(indexStep6 + 1 + i, 0, fieldset);
     }
 }
 
-// Next button click
+// Volgende button
 nextBtn?.addEventListener('click', () => {
     const currentStepEl = steps[currentStep];
 
@@ -128,13 +137,13 @@ nextBtn?.addEventListener('click', () => {
         }
     }
 
-    // Check validity per step
-    if (firstInvalid) {
-        firstInvalid.reportValidity();
-        return; // Zorgt voor dat je niet naar volgende stap kan
-    }
+    // Valideren op elke stap
+    // if (firstInvalid) {
+    //     firstInvalid.reportValidity();
+    //     return; // Zorgt voor dat je niet naar volgende stap kan
+    // }
 
-    // Generate beneficiaries dynamically if on step6
+    // Dynamisch gerereren van verkrijgers
     if (currentStepEl.id === 'step6') {
         const num = parseInt(numberInput.value, 10);
         if (!isNaN(num) && num > 0) {
@@ -142,7 +151,7 @@ nextBtn?.addEventListener('click', () => {
         }
     }
 
-    // Move to next step (skip skipped steps)
+    // Naar volgende stap gaan, geskipte stappen overslaan
     let nextIndex = currentStep + 1;
     while (nextIndex < steps.length && steps[nextIndex].classList.contains("step-skipped")) {
         nextIndex++;
@@ -152,7 +161,7 @@ nextBtn?.addEventListener('click', () => {
         currentStep = nextIndex;
         showStep(currentStep);
     } else {
-        // We reached the end → show final screen
+        // Laatste scherm laten zien 
         const finalScreen = document.querySelector('.final-screen-step');
 
         steps.forEach(step => {
@@ -170,12 +179,12 @@ nextBtn?.addEventListener('click', () => {
     }
 });
 
-// Previous button click
+// Vorige button 
 prevBtn?.addEventListener('click', () => {
 
     let prevIndex = currentStep - 1;
 
-    // Skip backwards over skipped steps
+    // Wanneer terug door het formulier gaan, worden geskipte stappen ook overgeslagen
     while (
         prevIndex >= 0 &&
         steps[prevIndex].classList.contains("step-skipped")
@@ -222,11 +231,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Voor screenreaders moest er een display none
+// Bepaalde stappen skippen of overslaan bij bepaalde radio buttons
 document.addEventListener("change", function (e) {
     const radio = e.target;
-
-    if (!radio.matches('input[type="radio"]')) return;
 
     const step = radio.closest(".step");
     if (!step) return;
@@ -250,19 +257,25 @@ document.addEventListener("change", function (e) {
     const inputs = target.querySelectorAll("input, select, textarea, button");
 
     if (radio.value === "no") {
+        // Make inaccessible for assistive tech
         target.setAttribute("aria-hidden", "true");
-        target.setAttribute("inert", "");
+        target.inert = true;
 
-        // Disable all children inputs
+        // Disable all child inputs
         inputs.forEach(input => input.disabled = true);
     }
 
     if (radio.value === "yes") {
+        // Make accessible
         target.removeAttribute("aria-hidden");
-        target.removeAttribute("inert");
-
-        // Enable all children inputs
+        target.inert = false;
+        // Enable all child inputs
         inputs.forEach(input => input.disabled = false);
     }
 });
+// Date validatie
+const today = new Date().toISOString().split("T")[0];
 
+document.querySelectorAll('input[type="date"]').forEach(input => {
+    input.max = today;
+});
