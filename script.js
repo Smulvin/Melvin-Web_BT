@@ -138,10 +138,10 @@ nextBtn?.addEventListener('click', () => {
     }
 
     // Valideren op elke stap
-    // if (firstInvalid) {
-    //     firstInvalid.reportValidity();
-    //     return; // Zorgt voor dat je niet naar volgende stap kan
-    // }
+    if (firstInvalid) {
+        firstInvalid.reportValidity();
+        return; // Zorgt voor dat je niet naar volgende stap kan
+    }
 
     // Dynamisch gerereren van verkrijgers
     if (currentStepEl.id === 'step6') {
@@ -253,26 +253,27 @@ document.addEventListener("change", function (e) {
     const target = step.querySelector(selector);
     if (!target) return;
 
-    // Select all form controls inside target
+    // Selecteer alle form elementen binnen de target, zodat we ze kunnen disablen of enablen
     const inputs = target.querySelectorAll("input, select, textarea, button");
 
     if (radio.value === "no") {
-        // Make inaccessible for assistive tech
+        // Ervoor zorgen dat screenreaders het niet lezen en dat het niet interactief is
         target.setAttribute("aria-hidden", "true");
         target.inert = true;
 
-        // Disable all child inputs
+        // Alle inputs disablen 
         inputs.forEach(input => input.disabled = true);
     }
 
     if (radio.value === "yes") {
-        // Make accessible
+        // Weer beschikbaar maken voor sreenreaders
         target.removeAttribute("aria-hidden");
         target.inert = false;
-        // Enable all child inputs
+        // Alle inputs enablen
         inputs.forEach(input => input.disabled = false);
     }
 });
+
 // Date validatie
 const today = new Date().toISOString().split("T")[0];
 
