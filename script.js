@@ -138,10 +138,10 @@ nextBtn?.addEventListener('click', () => {
     }
 
     // Valideren op elke stap
-    if (firstInvalid) {
-        firstInvalid.reportValidity();
-        return; // Zorgt voor dat je niet naar volgende stap kan
-    }
+    // if (firstInvalid) {
+    //     firstInvalid.reportValidity();
+    //     return; // Zorgt voor dat je niet naar volgende stap kan
+    // }
 
     // Dynamisch gerereren van verkrijgers
     if (currentStepEl.id === 'step6') {
